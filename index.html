@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-theme-default>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Transcry — Private voice-to-text for Android</title>
 <meta name="description" id="metaDesc" content="Transcry turns speech into text on Android — offline on-device or online. Translate, edit, and export to Word, PDF, ODT or SRT. No account, no tracking. 3-day free trial.">
 <link rel="canonical" href="https://fx2ltd.github.io/Transcry-dist/">
-<!-- Social sharing -->
+<link rel="icon" type="image/png" href="assets/icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Transcry">
 <meta property="og:title" content="Transcry — Private voice-to-text for Android">
@@ -21,12 +21,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-  /* Dark-first brand identity (matches the app), with a designed light theme.
+  /* Dark-first brand identity, tuned to the app's own graphics:
+     accent = the mic-bar mint (#47D49B), background = the app screen (#0C0F16).
      Single editorial column; full-bleed tinted bands with inner wrappers. */
   :root {
-    --bg: #0E1016; --surface: #161B25; --surface-2: #1C2230;
+    --bg: #0C0F16; --surface: #151A24; --surface-2: #1B212D;
     --fg: #ECEEF3; --dim: #99A0B2; --line: #272E3C;
-    --accent: #2DD4A7; --accent-soft: #15c29733; --accent-ink: #042019;
+    --accent: #47D49B; --accent-soft: rgba(71,212,155,.14); --accent-ink: #05251A;
     --radius: 16px; --maxw: 1080px;
     --font-display: 'Sora', system-ui, sans-serif;
     --font-body: 'IBM Plex Sans', system-ui, sans-serif;
@@ -37,14 +38,14 @@
     :root:not([data-theme="dark"]) {
       --bg: #F6F7F9; --surface: #FFFFFF; --surface-2: #F0F2F6;
       --fg: #14171F; --dim: #596074; --line: #E3E6EC;
-      --accent: #0E8F6E; --accent-soft: #0e8f6e1a; --accent-ink: #FFFFFF;
+      --accent: #0E8F6E; --accent-soft: rgba(14,143,110,.10); --accent-ink: #FFFFFF;
       color-scheme: light;
     }
   }
   :root[data-theme="light"] {
     --bg: #F6F7F9; --surface: #FFFFFF; --surface-2: #F0F2F6;
     --fg: #14171F; --dim: #596074; --line: #E3E6EC;
-    --accent: #0E8F6E; --accent-soft: #0e8f6e1a; --accent-ink: #FFFFFF;
+    --accent: #0E8F6E; --accent-soft: rgba(14,143,110,.10); --accent-ink: #FFFFFF;
     color-scheme: light;
   }
 
@@ -70,10 +71,10 @@
   body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
     background: var(--bg); z-index: 21; }
   .topbar .wrap { display: flex; align-items: center; justify-content: space-between;
-    padding-block: 14px; gap: 14px; }
+    padding-block: 12px; gap: 14px; }
   .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display);
     font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
-  .brand .mark { width: 26px; height: 26px; flex: none; }
+  .brand .mark { width: 30px; height: 30px; flex: none; border-radius: 8px; object-fit: cover; display: block; }
   .bar-actions { display: flex; align-items: center; gap: 10px; }
   .topbar .cta { display: none; }
   @media (min-width: 680px) { .topbar .cta { display: inline-flex; } }
@@ -108,26 +109,16 @@
   .trustline span { display: inline-flex; align-items: center; gap: 7px; min-width: 0; }
   .trustline svg { color: var(--accent); flex: none; }
 
-  .device { position: relative; justify-self: center; width: min(320px, 82vw);
-    aspect-ratio: 300 / 420; max-width: 100%; border-radius: 30px;
-    background: linear-gradient(160deg, var(--surface-2), var(--surface));
-    border: 1px solid var(--line); box-shadow: 0 30px 70px -40px rgba(0,0,0,.6);
-    padding: 22px; display: flex; flex-direction: column; gap: 16px; overflow: hidden; }
-  .device::before { content: ""; position: absolute; inset: 0;
-    background: radial-gradient(120% 60% at 80% -10%, var(--accent-soft), transparent 60%); }
-  .dev-top { display: flex; align-items: center; gap: 8px; color: var(--dim);
-    font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; z-index: 1; }
-  .dev-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
-  .wave { height: 54px; display: flex; align-items: center; gap: 3px; z-index: 1; }
-  .wave i { flex: 1; background: var(--accent); border-radius: 2px; height: 20%; animation: eq 1.4s ease-in-out infinite; }
-  @keyframes eq { 0%,100% { height: 18%; opacity:.55 } 50% { height: 92%; opacity:1 } }
-  .dev-lines { display: flex; flex-direction: column; gap: 9px; z-index: 1; margin-top: 4px; }
-  .dev-lines b { height: 10px; border-radius: 5px; background: color-mix(in oklab, var(--fg) 20%, transparent); }
-  .dev-lines b:nth-child(1){ width: 92% } .dev-lines b:nth-child(2){ width: 78% }
-  .dev-lines b:nth-child(3){ width: 85% } .dev-lines b:nth-child(4){ width: 54% }
-  .dev-chip { margin-top: auto; align-self: flex-start; z-index: 1; font-family: var(--font-mono);
-    font-size: 11px; color: var(--accent); background: var(--accent-soft); padding: 6px 11px; border-radius: 999px; letter-spacing: .05em; }
-  @media (prefers-reduced-motion: reduce) { .wave i { animation: none; height: 55%; } }
+  /* Hero visual: the real app icon on a soft brand glow */
+  .hero-art { position: relative; justify-self: center; width: min(360px, 82vw); aspect-ratio: 1; display: grid; place-items: center; }
+  .hero-art::before { content: ""; position: absolute; inset: 8%;
+    background: radial-gradient(circle at 50% 42%, var(--accent-soft), transparent 62%); filter: blur(10px); }
+  .hero-art img { position: relative; width: 72%; border-radius: 28%;
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,.65); }
+  .hero-wave { position: absolute; bottom: 7%; display: flex; align-items: flex-end; gap: 4px; height: 44px; z-index: 1; }
+  .hero-wave i { width: 5px; background: var(--accent); border-radius: 3px; height: 30%; animation: eq 1.4s ease-in-out infinite; }
+  @keyframes eq { 0%,100% { height: 22%; opacity:.6 } 50% { height: 100%; opacity:1 } }
+  @media (prefers-reduced-motion: reduce) { .hero-wave i { animation: none; height: 60%; } }
 
   .sec-head { max-width: 46ch; }
   .sec-head h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 600; letter-spacing: -0.02em; margin-top: 12px; }
@@ -143,6 +134,14 @@
     background: var(--accent-soft); color: var(--accent); flex: none; }
   .card h3 { font-size: 1.12rem; font-weight: 600; }
   .card p { color: var(--dim); font-size: 0.97rem; }
+
+  /* Screenshots */
+  .shots { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(18px, 4vw, 40px); margin-top: 44px; }
+  .phone { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .phone .frame { width: min(230px, 64vw); border-radius: 28px; border: 1px solid var(--line);
+    background: var(--surface-2); overflow: hidden; box-shadow: 0 30px 60px -36px rgba(0,0,0,.6); }
+  .phone img { display: block; width: 100%; }
+  .phone span { font-size: 13px; color: var(--dim); font-family: var(--font-mono); letter-spacing: .04em; }
 
   .steps { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 40px; counter-reset: s; }
   @media (min-width: 720px) { .steps { grid-template-columns: repeat(4, 1fr); } }
@@ -184,6 +183,7 @@
   footer { border-top: 1px solid var(--line); background: var(--surface); }
   footer .wrap { padding-block: 40px; display: flex; flex-wrap: wrap; gap: 20px 40px; justify-content: space-between; align-items: flex-start; }
   footer .brand { font-size: 16px; }
+  footer .brand .mark { width: 26px; height: 26px; }
   .foot-meta { color: var(--dim); font-size: 14px; display: flex; flex-direction: column; gap: 6px; }
   .foot-meta a { color: var(--accent); text-decoration: none; }
   .foot-meta a:hover { text-decoration: underline; }
@@ -197,17 +197,7 @@
 
 <header class="topbar">
   <div class="wrap">
-    <div class="brand">
-      <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <rect x="1" y="1" width="30" height="30" rx="9" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
-        <g stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round">
-          <line x1="9" y1="16" x2="9" y2="16.2"/><line x1="13" y1="12" x2="13" y2="20"/>
-          <line x1="16.5" y1="9" x2="16.5" y2="23"/><line x1="20" y1="13" x2="20" y2="19"/>
-          <line x1="23.5" y1="15" x2="23.5" y2="17"/>
-        </g>
-      </svg>
-      Transcry
-    </div>
+    <div class="brand"><img class="mark" src="assets/icon.png" alt="Transcry icon"> Transcry</div>
     <div class="bar-actions">
       <a class="btn btn-primary cta" data-i18n="nav.cta" href="https://play.google.com/store/apps/details?id=it.fx2.transcry" target="_blank" rel="noopener">Get it on Google Play</a>
       <select class="ctl lang-select" id="langSel" aria-label="Language">
@@ -230,7 +220,7 @@
         <p class="lead" data-i18n="hero.lead">Transcribe speech on your Android phone — offline on-device or online for top accuracy. Translate, edit, and export anywhere. No account, no tracking.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" data-i18n="nav.cta" href="https://play.google.com/store/apps/details?id=it.fx2.transcry" target="_blank" rel="noopener">Get it on Google Play</a>
-          <a class="btn btn-ghost" data-i18n="hero.see" href="#how">See how it works</a>
+          <a class="btn btn-ghost" data-i18n="hero.see" href="#screens">See it in action</a>
         </div>
         <div class="trustline">
           <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="trust.offline">Works offline</span></span>
@@ -238,11 +228,9 @@
           <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="trust.trial">3-day free trial</span></span>
         </div>
       </div>
-      <div class="device" aria-hidden="true">
-        <div class="dev-top"><span class="dev-dot"></span> <span data-i18n="dev.rec">Recording · Live</span></div>
-        <div class="wave" id="wave"></div>
-        <div class="dev-lines"><b></b><b></b><b></b><b></b></div>
-        <div class="dev-chip" data-i18n="dev.chip">↳ transcribed · translated</div>
+      <div class="hero-art" aria-hidden="true">
+        <img src="assets/icon.png" alt="">
+        <div class="hero-wave" id="wave"></div>
       </div>
     </div>
   </section>
@@ -289,7 +277,26 @@
     </div>
   </section>
 
-  <section id="how">
+  <section id="screens">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" data-i18n="screens.eyebrow">See it in action</p>
+        <h2 data-i18n="screens.h2">A calm, focused interface — built for one tap to text.</h2>
+      </div>
+      <div class="shots">
+        <div class="phone">
+          <div class="frame"><img src="assets/shot-record.png" alt="Transcry record screen" loading="lazy"></div>
+          <span data-i18n="screens.cap1">Record &amp; transcribe</span>
+        </div>
+        <div class="phone">
+          <div class="frame"><img src="assets/shot-live.png" alt="Transcry recording in progress" loading="lazy"></div>
+          <span data-i18n="screens.cap2">Live recording</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="how">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow" data-i18n="how.eyebrow">How it works</p>
@@ -390,22 +397,12 @@
 <footer>
   <div class="wrap">
     <div>
-      <div class="brand">
-        <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <rect x="1" y="1" width="30" height="30" rx="9" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
-          <g stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round">
-            <line x1="9" y1="16" x2="9" y2="16.2"/><line x1="13" y1="12" x2="13" y2="20"/>
-            <line x1="16.5" y1="9" x2="16.5" y2="23"/><line x1="20" y1="13" x2="20" y2="19"/>
-            <line x1="23.5" y1="15" x2="23.5" y2="17"/>
-          </g>
-        </svg>
-        Transcry
-      </div>
+      <div class="brand"><img class="mark" src="assets/icon.png" alt="Transcry icon"> Transcry</div>
       <p class="legal">© <span id="yr"></span> FX2 INFORMATION SERVICES LIMITED</p>
     </div>
     <div class="foot-links">
       <a href="#features" data-i18n="foot.features">Features</a>
-      <a href="#how" data-i18n="foot.how">How it works</a>
+      <a href="#screens" data-i18n="foot.screens">Screenshots</a>
       <a href="#pricing" data-i18n="foot.pricing">Pricing</a>
       <a href="privacy.html" data-i18n="foot.privacy">Privacy policy</a>
     </div>
@@ -420,13 +417,10 @@
 <script>
   var I18N = {
     en: {
-      "nav.cta":"Get it on Google Play",
-      "hero.eyebrow":"Voice to text · Private by design",
+      "nav.cta":"Get it on Google Play","hero.eyebrow":"Voice to text · Private by design",
       "hero.h1a":"Your voice becomes text.","hero.h1b":"And it stays yours.",
       "hero.lead":"Transcribe speech on your Android phone — offline on-device or online for top accuracy. Translate, edit, and export anywhere. No account, no tracking.",
-      "hero.see":"See how it works",
-      "trust.offline":"Works offline","trust.nologin":"No login","trust.trial":"3-day free trial",
-      "dev.rec":"Recording · Live","dev.chip":"↳ transcribed · translated",
+      "hero.see":"See it in action","trust.offline":"Works offline","trust.nologin":"No login","trust.trial":"3-day free trial",
       "feat.eyebrow":"What it does","feat.h2":"Everything you need to turn talk into documents.",
       "feat.sub":"One app for recording, transcription, translation, and export — built to work your way, online or off.",
       "f1.t":"Transcribe online or offline","f1.p":"Record or import audio and turn it into text on-device — fully offline — or online when you want maximum accuracy.",
@@ -435,6 +429,8 @@
       "f4.t":"Edit, search & organize","f4.p":"Fix wording inline, play back the audio to check, search across everything, and keep your transcripts tidy.",
       "f5.t":"Bring your own key, or subscribe","f5.p":"Use your own API key for pay-as-you-go transcription, or subscribe to Pro for a managed experience.",
       "f6.t":"Private by default","f6.p":"No account and no tracking. Your recordings and API keys stay on your device — your subscription follows your Google account across every phone, with no login.",
+      "screens.eyebrow":"See it in action","screens.h2":"A calm, focused interface — built for one tap to text.",
+      "screens.cap1":"Record & transcribe","screens.cap2":"Live recording",
       "how.eyebrow":"How it works","how.h2":"From spoken word to shareable document in four steps.",
       "s1.t":"Record or import","s1.p":"Capture audio live, or bring in a file you already have.",
       "s2.t":"Transcribe","s2.p":"Get clean text on-device or online, in the language you spoke.",
@@ -450,17 +446,14 @@
       "aud.eyebrow":"Who it's for","aud.h2":"Made for anyone who turns talk into text.",
       "aud.1":"Journalists & interviews","aud.2":"Students & lectures","aud.3":"Researchers","aud.4":"Content creators & subtitles","aud.5":"Meetings & voice memos","aud.6":"Accessibility",
       "final.h2":"Give your voice a document.","final.p":"Download Transcry and try everything free for three days.",
-      "foot.features":"Features","foot.how":"How it works","foot.pricing":"Pricing","foot.privacy":"Privacy policy",
+      "foot.features":"Features","foot.screens":"Screenshots","foot.pricing":"Pricing","foot.privacy":"Privacy policy",
       "foot.questions":"Questions or feedback?","foot.powered":"Powered by FX2 Information Services Limited"
     },
     it: {
-      "nav.cta":"Scarica su Google Play",
-      "hero.eyebrow":"Voce in testo · Privato per scelta",
+      "nav.cta":"Scarica su Google Play","hero.eyebrow":"Voce in testo · Privato per scelta",
       "hero.h1a":"La tua voce diventa testo.","hero.h1b":"E resta tua.",
       "hero.lead":"Trascrivi il parlato sul tuo telefono Android — offline sul dispositivo o online per la massima precisione. Traduci, modifica ed esporta ovunque. Nessun account, nessun tracciamento.",
-      "hero.see":"Scopri come funziona",
-      "trust.offline":"Funziona offline","trust.nologin":"Nessun login","trust.trial":"3 giorni di prova gratuita",
-      "dev.rec":"Registrazione · Live","dev.chip":"↳ trascritto · tradotto",
+      "hero.see":"Guardala in azione","trust.offline":"Funziona offline","trust.nologin":"Nessun login","trust.trial":"3 giorni di prova gratuita",
       "feat.eyebrow":"Cosa fa","feat.h2":"Tutto ciò che serve per trasformare il parlato in documenti.",
       "feat.sub":"Un'app per registrare, trascrivere, tradurre ed esportare — pensata per lavorare come preferisci, online o offline.",
       "f1.t":"Trascrivi online o offline","f1.p":"Registra o importa l'audio e trasformalo in testo sul dispositivo — completamente offline — oppure online per la massima precisione.",
@@ -469,6 +462,8 @@
       "f4.t":"Modifica, cerca e organizza","f4.p":"Correggi il testo al volo, riascolta l'audio per verificare, cerca in tutto e tieni in ordine le tue trascrizioni.",
       "f5.t":"Usa la tua chiave o abbonati","f5.p":"Usa la tua chiave API per pagare a consumo, oppure abbonati a Pro per un'esperienza gestita.",
       "f6.t":"Privato per impostazione","f6.p":"Nessun account e nessun tracciamento. Le registrazioni e le chiavi API restano sul dispositivo — l'abbonamento ti segue sul tuo account Google su ogni telefono, senza login.",
+      "screens.eyebrow":"Guardala in azione","screens.h2":"Un'interfaccia chiara e mirata — un tocco e diventa testo.",
+      "screens.cap1":"Registra e trascrivi","screens.cap2":"Registrazione live",
       "how.eyebrow":"Come funziona","how.h2":"Dalla parola detta al documento condivisibile in quattro passi.",
       "s1.t":"Registra o importa","s1.p":"Cattura l'audio dal vivo o importa un file che hai già.",
       "s2.t":"Trascrivi","s2.p":"Ottieni testo pulito, sul dispositivo o online, nella lingua in cui hai parlato.",
@@ -484,17 +479,14 @@
       "aud.eyebrow":"Per chi è","aud.h2":"Fatto per chiunque trasformi il parlato in testo.",
       "aud.1":"Giornalisti e interviste","aud.2":"Studenti e lezioni","aud.3":"Ricercatori","aud.4":"Creator e sottotitoli","aud.5":"Riunioni e note vocali","aud.6":"Accessibilità",
       "final.h2":"Dai un documento alla tua voce.","final.p":"Scarica Transcry e prova tutto gratis per tre giorni.",
-      "foot.features":"Funzioni","foot.how":"Come funziona","foot.pricing":"Prezzi","foot.privacy":"Informativa sulla privacy",
+      "foot.features":"Funzioni","foot.screens":"Screenshot","foot.pricing":"Prezzi","foot.privacy":"Informativa sulla privacy",
       "foot.questions":"Domande o feedback?","foot.powered":"Powered by FX2 Information Services Limited"
     },
     es: {
-      "nav.cta":"Descárgalo en Google Play",
-      "hero.eyebrow":"Voz a texto · Privado por diseño",
+      "nav.cta":"Descárgalo en Google Play","hero.eyebrow":"Voz a texto · Privado por diseño",
       "hero.h1a":"Tu voz se convierte en texto.","hero.h1b":"Y sigue siendo tuya.",
       "hero.lead":"Transcribe lo que dices en tu teléfono Android — sin conexión en el dispositivo o en línea para máxima precisión. Traduce, edita y exporta donde quieras. Sin cuenta, sin rastreo.",
-      "hero.see":"Mira cómo funciona",
-      "trust.offline":"Funciona sin conexión","trust.nologin":"Sin inicio de sesión","trust.trial":"3 días de prueba gratis",
-      "dev.rec":"Grabando · En vivo","dev.chip":"↳ transcrito · traducido",
+      "hero.see":"Míralo en acción","trust.offline":"Funciona sin conexión","trust.nologin":"Sin inicio de sesión","trust.trial":"3 días de prueba gratis",
       "feat.eyebrow":"Qué hace","feat.h2":"Todo lo necesario para convertir el habla en documentos.",
       "feat.sub":"Una app para grabar, transcribir, traducir y exportar — pensada para trabajar a tu manera, con o sin conexión.",
       "f1.t":"Transcribe en línea o sin conexión","f1.p":"Graba o importa audio y conviértelo en texto en el dispositivo — totalmente sin conexión — o en línea cuando quieras máxima precisión.",
@@ -503,6 +495,8 @@
       "f4.t":"Edita, busca y organiza","f4.p":"Corrige el texto al momento, reproduce el audio para comprobar, busca en todo y mantén tus transcripciones ordenadas.",
       "f5.t":"Usa tu clave o suscríbete","f5.p":"Usa tu propia clave API para pagar por uso, o suscríbete a Pro para una experiencia gestionada.",
       "f6.t":"Privado por defecto","f6.p":"Sin cuenta y sin rastreo. Tus grabaciones y claves API permanecen en tu dispositivo — tu suscripción te sigue en tu cuenta de Google en cada teléfono, sin inicio de sesión.",
+      "screens.eyebrow":"Míralo en acción","screens.h2":"Una interfaz clara y enfocada — un toque y es texto.",
+      "screens.cap1":"Graba y transcribe","screens.cap2":"Grabación en vivo",
       "how.eyebrow":"Cómo funciona","how.h2":"De la palabra hablada a un documento para compartir en cuatro pasos.",
       "s1.t":"Graba o importa","s1.p":"Captura audio en vivo o trae un archivo que ya tengas.",
       "s2.t":"Transcribe","s2.p":"Obtén texto limpio, en el dispositivo o en línea, en el idioma que hablaste.",
@@ -518,17 +512,14 @@
       "aud.eyebrow":"Para quién es","aud.h2":"Hecho para cualquiera que convierta el habla en texto.",
       "aud.1":"Periodistas y entrevistas","aud.2":"Estudiantes y clases","aud.3":"Investigadores","aud.4":"Creadores y subtítulos","aud.5":"Reuniones y notas de voz","aud.6":"Accesibilidad",
       "final.h2":"Dale un documento a tu voz.","final.p":"Descarga Transcry y prueba todo gratis durante tres días.",
-      "foot.features":"Funciones","foot.how":"Cómo funciona","foot.pricing":"Precios","foot.privacy":"Política de privacidad",
+      "foot.features":"Funciones","foot.screens":"Capturas","foot.pricing":"Precios","foot.privacy":"Política de privacidad",
       "foot.questions":"¿Preguntas o comentarios?","foot.powered":"Powered by FX2 Information Services Limited"
     },
     fr: {
-      "nav.cta":"Télécharger sur Google Play",
-      "hero.eyebrow":"Voix en texte · Privé par conception",
+      "nav.cta":"Télécharger sur Google Play","hero.eyebrow":"Voix en texte · Privé par conception",
       "hero.h1a":"Votre voix devient du texte.","hero.h1b":"Et elle reste la vôtre.",
       "hero.lead":"Transcrivez la parole sur votre téléphone Android — hors ligne sur l'appareil ou en ligne pour une précision maximale. Traduisez, modifiez et exportez partout. Sans compte, sans suivi.",
-      "hero.see":"Voir comment ça marche",
-      "trust.offline":"Fonctionne hors ligne","trust.nologin":"Sans connexion","trust.trial":"3 jours d'essai gratuit",
-      "dev.rec":"Enregistrement · En direct","dev.chip":"↳ transcrit · traduit",
+      "hero.see":"Voir en action","trust.offline":"Fonctionne hors ligne","trust.nologin":"Sans connexion","trust.trial":"3 jours d'essai gratuit",
       "feat.eyebrow":"Ce qu'elle fait","feat.h2":"Tout pour transformer la parole en documents.",
       "feat.sub":"Une seule app pour enregistrer, transcrire, traduire et exporter — conçue pour travailler à votre façon, en ligne ou hors ligne.",
       "f1.t":"Transcrivez en ligne ou hors ligne","f1.p":"Enregistrez ou importez de l'audio et transformez-le en texte sur l'appareil — totalement hors ligne — ou en ligne pour une précision maximale.",
@@ -537,6 +528,8 @@
       "f4.t":"Modifiez, cherchez et organisez","f4.p":"Corrigez le texte à la volée, réécoutez l'audio pour vérifier, cherchez dans tout et gardez vos transcriptions bien rangées.",
       "f5.t":"Votre clé, ou un abonnement","f5.p":"Utilisez votre propre clé API pour payer à l'usage, ou abonnez-vous à Pro pour une expérience gérée.",
       "f6.t":"Privé par défaut","f6.p":"Sans compte et sans suivi. Vos enregistrements et vos clés API restent sur votre appareil — votre abonnement vous suit sur votre compte Google, sur chaque téléphone, sans connexion.",
+      "screens.eyebrow":"Voir en action","screens.h2":"Une interface claire et concentrée — un geste et c'est du texte.",
+      "screens.cap1":"Enregistrer et transcrire","screens.cap2":"Enregistrement en direct",
       "how.eyebrow":"Comment ça marche","how.h2":"De la parole au document partageable en quatre étapes.",
       "s1.t":"Enregistrez ou importez","s1.p":"Capturez l'audio en direct ou importez un fichier existant.",
       "s2.t":"Transcrivez","s2.p":"Obtenez un texte net, sur l'appareil ou en ligne, dans la langue parlée.",
@@ -552,17 +545,14 @@
       "aud.eyebrow":"Pour qui","aud.h2":"Conçu pour quiconque transforme la parole en texte.",
       "aud.1":"Journalistes et interviews","aud.2":"Étudiants et cours","aud.3":"Chercheurs","aud.4":"Créateurs et sous-titres","aud.5":"Réunions et mémos vocaux","aud.6":"Accessibilité",
       "final.h2":"Donnez un document à votre voix.","final.p":"Téléchargez Transcry et essayez tout gratuitement pendant trois jours.",
-      "foot.features":"Fonctions","foot.how":"Comment ça marche","foot.pricing":"Tarifs","foot.privacy":"Politique de confidentialité",
+      "foot.features":"Fonctions","foot.screens":"Captures","foot.pricing":"Tarifs","foot.privacy":"Politique de confidentialité",
       "foot.questions":"Questions ou retours ?","foot.powered":"Powered by FX2 Information Services Limited"
     },
     de: {
-      "nav.cta":"Bei Google Play laden",
-      "hero.eyebrow":"Sprache zu Text · Privat by Design",
+      "nav.cta":"Bei Google Play laden","hero.eyebrow":"Sprache zu Text · Privat by Design",
       "hero.h1a":"Deine Stimme wird Text.","hero.h1b":"Und bleibt deine.",
       "hero.lead":"Transkribiere Gesprochenes auf deinem Android-Handy — offline auf dem Gerät oder online für höchste Genauigkeit. Übersetze, bearbeite und exportiere überall. Kein Konto, kein Tracking.",
-      "hero.see":"So funktioniert's",
-      "trust.offline":"Funktioniert offline","trust.nologin":"Kein Login","trust.trial":"3 Tage kostenlos testen",
-      "dev.rec":"Aufnahme · Live","dev.chip":"↳ transkribiert · übersetzt",
+      "hero.see":"In Aktion sehen","trust.offline":"Funktioniert offline","trust.nologin":"Kein Login","trust.trial":"3 Tage kostenlos testen",
       "feat.eyebrow":"Was sie kann","feat.h2":"Alles, um Gesprochenes in Dokumente zu verwandeln.",
       "feat.sub":"Eine App zum Aufnehmen, Transkribieren, Übersetzen und Exportieren — gebaut, damit du arbeitest wie du willst, online oder offline.",
       "f1.t":"Online oder offline transkribieren","f1.p":"Nimm Audio auf oder importiere es und verwandle es in Text — direkt auf dem Gerät, komplett offline — oder online für maximale Genauigkeit.",
@@ -571,6 +561,8 @@
       "f4.t":"Bearbeiten, suchen & ordnen","f4.p":"Korrigiere Text direkt, spiele das Audio zur Kontrolle ab, durchsuche alles und halte deine Transkripte ordentlich.",
       "f5.t":"Eigener Schlüssel oder Abo","f5.p":"Nutze deinen eigenen API-Schlüssel und zahle nach Verbrauch, oder abonniere Pro für ein verwaltetes Erlebnis.",
       "f6.t":"Privat von Haus aus","f6.p":"Kein Konto und kein Tracking. Deine Aufnahmen und API-Schlüssel bleiben auf deinem Gerät — dein Abo folgt deinem Google-Konto auf jedem Handy, ganz ohne Login.",
+      "screens.eyebrow":"In Aktion sehen","screens.h2":"Eine ruhige, klare Oberfläche — ein Tipp und es ist Text.",
+      "screens.cap1":"Aufnehmen & transkribieren","screens.cap2":"Live-Aufnahme",
       "how.eyebrow":"So funktioniert's","how.h2":"Vom gesprochenen Wort zum teilbaren Dokument in vier Schritten.",
       "s1.t":"Aufnehmen oder importieren","s1.p":"Nimm Audio live auf oder bring eine vorhandene Datei mit.",
       "s2.t":"Transkribieren","s2.p":"Erhalte sauberen Text, auf dem Gerät oder online, in der gesprochenen Sprache.",
@@ -586,7 +578,7 @@
       "aud.eyebrow":"Für wen","aud.h2":"Für alle, die Gesprochenes in Text verwandeln.",
       "aud.1":"Journalisten & Interviews","aud.2":"Studierende & Vorlesungen","aud.3":"Forschende","aud.4":"Creator & Untertitel","aud.5":"Meetings & Sprachnotizen","aud.6":"Barrierefreiheit",
       "final.h2":"Gib deiner Stimme ein Dokument.","final.p":"Lade Transcry und teste alles drei Tage gratis.",
-      "foot.features":"Funktionen","foot.how":"So funktioniert's","foot.pricing":"Preise","foot.privacy":"Datenschutzerklärung",
+      "foot.features":"Funktionen","foot.screens":"Screenshots","foot.pricing":"Preise","foot.privacy":"Datenschutzerklärung",
       "foot.questions":"Fragen oder Feedback?","foot.powered":"Powered by FX2 Information Services Limited"
     }
   };
@@ -619,7 +611,6 @@
     });
     apply(pickLang());
 
-    // Theme
     try { var st = localStorage.getItem('transcry-site-theme'); if (st) root.setAttribute('data-theme', st); } catch (e) {}
     function curTheme() {
       var a = root.getAttribute('data-theme');
@@ -632,11 +623,10 @@
       try { localStorage.setItem('transcry-site-theme', next); } catch (e) {}
     });
 
-    // Hero equalizer
     var wave = document.getElementById('wave');
-    if (wave) for (var i = 0; i < 28; i++) {
+    if (wave) for (var i = 0; i < 16; i++) {
       var b = document.createElement('i');
-      b.style.animationDelay = (i * 0.05).toFixed(2) + 's';
+      b.style.animationDelay = (i * 0.07).toFixed(2) + 's';
       b.style.animationDuration = (1.1 + (i % 5) * 0.15).toFixed(2) + 's';
       wave.appendChild(b);
     }
