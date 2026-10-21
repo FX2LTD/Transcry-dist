@@ -11,8 +11,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-  /* Same brand system as the landing page: dark-first, mint accent (#47D49B),
-     app background (#0C0F16). Document column kept narrow for legal readability. */
   :root {
     --bg: #0C0F16; --surface: #151A24; --surface-2: #1B212D;
     --fg: #ECEEF3; --dim: #99A0B2; --line: #272E3C;
@@ -54,31 +52,30 @@
   .bar { width: 100%; max-width: 820px; margin-inline: auto;
     padding-left: max(20px, env(safe-area-inset-left, 0px));
     padding-right: max(20px, env(safe-area-inset-right, 0px));
-    display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-block: 12px; }
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 12px; }
   .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display);
     font-weight: 700; font-size: 18px; letter-spacing: -0.01em; color: var(--fg); text-decoration: none; }
   .brand img { width: 30px; height: 30px; border-radius: 8px; display: block; }
   .bar-actions { display: flex; align-items: center; gap: 10px; }
-  .back { font-size: 14px; color: var(--dim); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+  .back { font-size: 14px; color: var(--dim); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
   .back:hover { color: var(--accent); }
-  .theme-toggle { background: transparent; border: 1px solid var(--line); color: var(--dim);
-    width: 38px; height: 38px; border-radius: 999px; cursor: pointer; display: grid; place-items: center; flex: none; }
-  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+  .ctl { background: transparent; border: 1px solid var(--line); color: var(--dim); height: 38px; border-radius: 999px; cursor: pointer; }
+  .ctl:hover { color: var(--accent); border-color: var(--accent); }
+  .lang-select { font-family: var(--font-mono); font-size: 12px; letter-spacing: .05em; padding: 0 8px; color: var(--fg); }
+  .theme-toggle { width: 38px; display: grid; place-items: center; flex: none; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
   .wrap { max-width: 760px; margin: 0 auto;
     padding-left: max(20px, env(safe-area-inset-left, 0px));
     padding-right: max(20px, env(safe-area-inset-right, 0px));
-    padding-block: clamp(32px, 6vw, 56px) 72px; }
-  .doc-head { border-bottom: 1px solid var(--line); padding-bottom: 22px; margin-bottom: 30px; }
+    padding-block: clamp(32px, 6vw, 56px) 40px; }
+  .doc-head { border-bottom: 1px solid var(--line); padding-bottom: 22px; margin-bottom: 20px; }
   .eyebrow { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .14em;
     font-size: 12px; color: var(--accent); margin: 0 0 10px; }
   h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 700;
     letter-spacing: -0.02em; line-height: 1.12; margin: 0 0 8px; }
   .sub { color: var(--dim); font-size: 0.95rem; margin: 0; }
-  h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em;
-    margin: 40px 0 12px; }
-  h3 { font-size: 1.05rem; margin: 24px 0 6px; }
+  h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; margin: 40px 0 12px; }
   p, li { margin: 0 0 13px; }
   ul { padding-left: 1.3em; }
   ul ul { margin-top: 10px; }
@@ -86,10 +83,10 @@
   .lead { background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
     padding: 20px 22px; margin: 0 0 10px; font-size: 1.05rem; }
   .lead strong { color: var(--accent); }
-  code { background: var(--surface-2); border: 1px solid var(--line); border-radius: 5px;
-    padding: 1px 5px; font-size: 0.92em; font-family: var(--font-mono); }
+  .i18n-note { color: var(--dim); font-size: 0.86rem; border-left: 3px solid var(--line);
+    padding-left: 14px; margin: 26px 0 0; }
 
-  footer { border-top: 1px solid var(--line); background: var(--surface); margin-top: 8px; }
+  footer { border-top: 1px solid var(--line); background: var(--surface); margin-top: 36px; }
   .foot { max-width: 760px; margin-inline: auto;
     padding-left: max(20px, env(safe-area-inset-left, 0px));
     padding-right: max(20px, env(safe-area-inset-right, 0px));
@@ -99,8 +96,8 @@
   .foot-links { display: flex; gap: 20px; font-size: 14px; }
   .foot-links a { color: var(--dim); text-decoration: none; }
   .foot-links a:hover { color: var(--fg); }
-  .legal { color: var(--dim); font-size: 12.5px; margin: 14px 0 0; max-width: 760px;
-    margin-inline: auto; padding-left: max(20px, env(safe-area-inset-left, 0px));
+  .legal { color: var(--dim); font-size: 12.5px; max-width: 760px; margin: 14px auto 0;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
     padding-right: max(20px, env(safe-area-inset-right, 0px)); padding-bottom: 36px; }
 </style>
 </head>
@@ -112,105 +109,196 @@
     <div class="bar-actions">
       <a class="back" href="index.html">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Back to Transcry
+        <span id="backTxt">Back to Transcry</span>
       </a>
-      <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme" title="Toggle theme">
+      <select class="ctl lang-select" id="langSel" aria-label="Language">
+        <option value="en">EN</option><option value="it">IT</option>
+        <option value="es">ES</option><option value="fr">FR</option><option value="de">DE</option>
+      </select>
+      <button class="ctl theme-toggle" id="themeBtn" aria-label="Toggle theme" title="Toggle theme">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
       </button>
     </div>
   </div>
 </header>
 
-<main class="wrap">
-  <div class="doc-head">
-    <p class="eyebrow">Privacy Policy</p>
-    <h1>Transcry — Privacy Policy</h1>
-    <p class="sub">Last updated: 9 October 2026</p>
-  </div>
-
-  <p class="lead">Transcry (&ldquo;the app&rdquo;) is a voice-to-text app published by FX2 (&ldquo;we&rdquo;, &ldquo;us&rdquo;). This policy explains what the app does with your data. The short version: <strong>Transcry is built to keep your audio and text on your device.</strong> We do not run analytics, we do not have user accounts, and we never sell your data.</p>
-
-  <h2>Who the developer is</h2>
-  <p>FX2 — contact: <strong>info@fx2.it</strong></p>
-
-  <h2>What the app does with your voice and text</h2>
-  <p>How your audio is handled depends on which transcription mode <strong>you</strong> choose in the app:</p>
-  <ul>
-    <li><strong>On-device transcription (default, fully offline).</strong> When you use the downloaded speech model, your audio is transcribed <strong>entirely on your device</strong>. The audio and the resulting text are <strong>not sent anywhere</strong>.</li>
-    <li><strong>Live mode (device speech recognition).</strong> Live mode uses <strong>your device&rsquo;s own speech-recognition service</strong> (for example, the one provided by Google on your phone). Your spoken audio is processed by that on-device/system service under <strong>its own</strong> privacy terms — Transcry does not receive or store a copy beyond the transcript it shows you.</li>
-    <li><strong>Online transcription with your own API key (BYOK).</strong> If you enter your own API key for a cloud provider, Transcry sends the audio you choose to transcribe <strong>directly to the provider you selected</strong>, using your key:
-      <ul>
-        <li><strong>Groq</strong>, <strong>OpenAI</strong>, or <strong>AssemblyAI</strong> (your choice).</li>
-        <li>For <strong>AssemblyAI</strong> speaker labels, the <strong>whole original audio file</strong> is uploaded to AssemblyAI for processing.</li>
-        <li>The audio goes <strong>straight from your device to that provider</strong> — it does <strong>not</strong> pass through FX2&rsquo;s servers. Your use of a provider is governed by <strong>that provider&rsquo;s</strong> privacy policy and your account with them.</li>
-      </ul>
-    </li>
-    <li><strong>Translation (optional).</strong> If you translate a transcript using your own cloud key, the <strong>text</strong> to translate is sent directly to the provider you configured (Groq or OpenAI). Offline translation, when available, stays on your device.</li>
-  </ul>
-  <p>You choose the mode. Nothing is uploaded unless you pick an online option and provide your own key.</p>
-
-  <h2>What is stored on your device</h2>
-  <ul>
-    <li><strong>Transcripts and translations</strong> you save, and optionally the <strong>original audio</strong> of saved items, are stored <strong>only on your device</strong> (in the app&rsquo;s local storage). They are not uploaded by this feature. Deleting an item, or the app, removes them.</li>
-    <li><strong>Your settings</strong>, including any <strong>API keys</strong> you enter, are stored <strong>only on your device</strong> so the app can reuse them. Keys are not transmitted to FX2.</li>
-  </ul>
-
-  <h2>The speech model download</h2>
-  <p>The on-device speech model is downloaded from <strong>huggingface.co</strong> the first time you choose to install it. This is a normal file download of an ML model; no personal data is sent in order to fetch it.</p>
-
-  <h2>Purchases (Google Play Billing)</h2>
-  <p>If you buy a plan (one-time unlock or a subscription), the purchase is handled by <strong>Google Play Billing</strong>. To confirm what you bought, the app sends the <strong>Google purchase token</strong> and an <strong>anonymous, randomly-generated install identifier</strong> to our verification server, which checks it with Google and records your plan status. This server <strong>never receives your audio, transcripts, or API keys</strong>, and the install identifier is not linked to your name, email, or Google account. Google processes the payment under Google&rsquo;s own privacy policy.</p>
-
-  <h2>Feedback</h2>
-  <p>If you use the in-app feedback option, the app <strong>opens your own email app</strong> with a message addressed to info@fx2.it. Nothing is sent automatically — you decide whether to send it, and you can see and edit everything (including any diagnostic details) before you do. If you email us, we receive what you send.</p>
-
-  <h2>What we do <em>not</em> do</h2>
-  <ul>
-    <li><strong>No analytics or tracking.</strong> The app contains no analytics, advertising, or tracking SDKs.</li>
-    <li><strong>No accounts.</strong> There is no sign-up and no profile.</li>
-    <li><strong>No selling or sharing</strong> of personal data with third parties for their own purposes. (The only third parties involved are the ones <strong>you</strong> choose: your device&rsquo;s speech service, any cloud provider you supply a key for, Google for payments, and Hugging Face for the model download.)</li>
-  </ul>
-
-  <h2>Children</h2>
-  <p>Transcry is a general-purpose productivity tool and is not directed at children.</p>
-
-  <h2>Your choices</h2>
-  <ul>
-    <li>Use <strong>on-device</strong> mode to keep everything offline.</li>
-    <li><strong>Don&rsquo;t enter</strong> a cloud API key if you don&rsquo;t want any audio or text to leave your device for a third-party provider.</li>
-    <li><strong>Delete</strong> saved transcripts/audio in the app at any time, or uninstall the app to remove all locally-stored data.</li>
-  </ul>
-
-  <h2>Changes</h2>
-  <p>We may update this policy as the app changes. The &ldquo;Last updated&rdquo; date above reflects the current version.</p>
-
-  <h2>Contact</h2>
-  <p>Questions about this policy or your data: <strong>info@fx2.it</strong></p>
-</main>
+<main class="wrap" id="doc"><!-- filled by script --></main>
 
 <footer>
   <div class="foot">
     <a class="brand" href="index.html"><img src="assets/icon.png" alt="Transcry icon"> Transcry</a>
     <div class="foot-links">
-      <a href="index.html">Home</a>
-      <a href="index.html#features">Features</a>
+      <a href="index.html" id="fHome">Home</a>
+      <a href="index.html#features" id="fFeatures">Features</a>
       <a href="mailto:info@fx2.it">info@fx2.it</a>
     </div>
   </div>
 </footer>
-<p class="legal">Transcry is a product of FX2 Information Services Limited. This page is the app&rsquo;s privacy policy, referenced from its Google Play listing.</p>
+<p class="legal" id="legalTxt">Transcry is a product of FX2 Information Services Limited. This page is the app&rsquo;s privacy policy, referenced from its Google Play listing.</p>
 
 <script>
+  // The policy body is rendered per language. The English text is the
+  // authoritative reference (stated in the note each translation carries).
+  var CHROME = {
+    en: { back:"Back to Transcry", home:"Home", features:"Features",
+      legal:"Transcry is a product of FX2 Information Services Limited. This page is the app’s privacy policy, referenced from its Google Play listing." },
+    it: { back:"Torna a Transcry", home:"Home", features:"Funzioni",
+      legal:"Transcry è un prodotto di FX2 Information Services Limited. Questa pagina è l’informativa sulla privacy dell’app, collegata dalla sua scheda su Google Play." },
+    es: { back:"Volver a Transcry", home:"Inicio", features:"Funciones",
+      legal:"Transcry es un producto de FX2 Information Services Limited. Esta página es la política de privacidad de la app, referenciada desde su ficha de Google Play." },
+    fr: { back:"Retour à Transcry", home:"Accueil", features:"Fonctions",
+      legal:"Transcry est un produit de FX2 Information Services Limited. Cette page est la politique de confidentialité de l’app, référencée depuis sa fiche Google Play." },
+    de: { back:"Zurück zu Transcry", home:"Start", features:"Funktionen",
+      legal:"Transcry ist ein Produkt der FX2 Information Services Limited. Diese Seite ist die Datenschutzerklärung der App, verlinkt aus dem Google-Play-Eintrag." }
+  };
+
+  var NOTE = {
+    en: "This policy is also available in other languages (use the selector above). The English version is the authoritative reference; in case of any discrepancy, the English text prevails.",
+    it: "Questa informativa è disponibile anche in altre lingue (usa il selettore in alto). La versione inglese è il riferimento ufficiale; in caso di discrepanze, prevale il testo inglese.",
+    es: "Esta política también está disponible en otros idiomas (usa el selector de arriba). La versión en inglés es la referencia oficial; en caso de discrepancia, prevalece el texto en inglés.",
+    fr: "Cette politique est aussi disponible dans d’autres langues (utilisez le sélecteur ci-dessus). La version anglaise fait foi ; en cas de divergence, le texte anglais prévaut.",
+    de: "Diese Erklärung ist auch in anderen Sprachen verfügbar (Auswahl oben). Maßgeblich ist die englische Fassung; bei Abweichungen gilt der englische Text."
+  };
+
+  var DOC = {
+    en: ''
+      + '<div class="doc-head"><p class="eyebrow">Privacy Policy</p><h1>Transcry — Privacy Policy</h1><p class="sub">Last updated: 9 October 2026</p></div>'
+      + '<p class="lead">Transcry (&ldquo;the app&rdquo;) is a voice-to-text app published by FX2 (&ldquo;we&rdquo;, &ldquo;us&rdquo;). This policy explains what the app does with your data. The short version: <strong>Transcry is built to keep your audio and text on your device.</strong> We do not run analytics, we do not have user accounts, and we never sell your data.</p>'
+      + '<h2>Who the developer is</h2><p>FX2 — contact: <strong>info@fx2.it</strong></p>'
+      + '<h2>What the app does with your voice and text</h2><p>How your audio is handled depends on which transcription mode <strong>you</strong> choose in the app:</p>'
+      + '<ul><li><strong>On-device transcription (default, fully offline).</strong> When you use the downloaded speech model, your audio is transcribed <strong>entirely on your device</strong>. The audio and the resulting text are <strong>not sent anywhere</strong>.</li>'
+      + '<li><strong>Live mode (device speech recognition).</strong> Live mode uses <strong>your device&rsquo;s own speech-recognition service</strong> (for example, the one provided by Google on your phone). Your spoken audio is processed by that on-device/system service under <strong>its own</strong> privacy terms — Transcry does not receive or store a copy beyond the transcript it shows you.</li>'
+      + '<li><strong>Online transcription with your own API key (BYOK).</strong> If you enter your own API key for a cloud provider, Transcry sends the audio you choose to transcribe <strong>directly to the provider you selected</strong>, using your key:<ul><li><strong>Groq</strong>, <strong>OpenAI</strong>, or <strong>AssemblyAI</strong> (your choice).</li><li>For <strong>AssemblyAI</strong> speaker labels, the <strong>whole original audio file</strong> is uploaded to AssemblyAI for processing.</li><li>The audio goes <strong>straight from your device to that provider</strong> — it does <strong>not</strong> pass through FX2&rsquo;s servers. Your use of a provider is governed by <strong>that provider&rsquo;s</strong> privacy policy and your account with them.</li></ul></li>'
+      + '<li><strong>Translation (optional).</strong> If you translate a transcript using your own cloud key, the <strong>text</strong> to translate is sent directly to the provider you configured (Groq or OpenAI). Offline translation, when available, stays on your device.</li></ul>'
+      + '<p>You choose the mode. Nothing is uploaded unless you pick an online option and provide your own key.</p>'
+      + '<h2>What is stored on your device</h2><ul><li><strong>Transcripts and translations</strong> you save, and optionally the <strong>original audio</strong> of saved items, are stored <strong>only on your device</strong> (in the app&rsquo;s local storage). They are not uploaded by this feature. Deleting an item, or the app, removes them.</li><li><strong>Your settings</strong>, including any <strong>API keys</strong> you enter, are stored <strong>only on your device</strong> so the app can reuse them. Keys are not transmitted to FX2.</li></ul>'
+      + '<h2>The speech model download</h2><p>The on-device speech model is downloaded from <strong>huggingface.co</strong> the first time you choose to install it. This is a normal file download of an ML model; no personal data is sent in order to fetch it.</p>'
+      + '<h2>Purchases (Google Play Billing)</h2><p>If you buy a plan (one-time unlock or a subscription), the purchase is handled by <strong>Google Play Billing</strong>. To confirm what you bought, the app sends the <strong>Google purchase token</strong> and an <strong>anonymous, randomly-generated install identifier</strong> to our verification server, which checks it with Google and records your plan status. This server <strong>never receives your audio, transcripts, or API keys</strong>, and the install identifier is not linked to your name, email, or Google account. Google processes the payment under Google&rsquo;s own privacy policy.</p>'
+      + '<h2>Feedback</h2><p>If you use the in-app feedback option, the app <strong>opens your own email app</strong> with a message addressed to info@fx2.it. Nothing is sent automatically — you decide whether to send it, and you can see and edit everything (including any diagnostic details) before you do. If you email us, we receive what you send.</p>'
+      + '<h2>What we do <em>not</em> do</h2><ul><li><strong>No analytics or tracking.</strong> The app contains no analytics, advertising, or tracking SDKs.</li><li><strong>No accounts.</strong> There is no sign-up and no profile.</li><li><strong>No selling or sharing</strong> of personal data with third parties for their own purposes. (The only third parties involved are the ones <strong>you</strong> choose: your device&rsquo;s speech service, any cloud provider you supply a key for, Google for payments, and Hugging Face for the model download.)</li></ul>'
+      + '<h2>Children</h2><p>Transcry is a general-purpose productivity tool and is not directed at children.</p>'
+      + '<h2>Your choices</h2><ul><li>Use <strong>on-device</strong> mode to keep everything offline.</li><li><strong>Don&rsquo;t enter</strong> a cloud API key if you don&rsquo;t want any audio or text to leave your device for a third-party provider.</li><li><strong>Delete</strong> saved transcripts/audio in the app at any time, or uninstall the app to remove all locally-stored data.</li></ul>'
+      + '<h2>Changes</h2><p>We may update this policy as the app changes. The &ldquo;Last updated&rdquo; date above reflects the current version.</p>'
+      + '<h2>Contact</h2><p>Questions about this policy or your data: <strong>info@fx2.it</strong></p>',
+
+    it: ''
+      + '<div class="doc-head"><p class="eyebrow">Informativa sulla privacy</p><h1>Transcry — Informativa sulla privacy</h1><p class="sub">Ultimo aggiornamento: 9 ottobre 2026</p></div>'
+      + '<p class="lead">Transcry (&ldquo;l&rsquo;app&rdquo;) è un’app di trascrizione vocale pubblicata da FX2 (&ldquo;noi&rdquo;). Questa informativa spiega cosa fa l’app con i tuoi dati. In breve: <strong>Transcry è progettata per mantenere l’audio e il testo sul tuo dispositivo.</strong> Non usiamo analisi dei dati, non abbiamo account utente e non vendiamo mai i tuoi dati.</p>'
+      + '<h2>Chi è lo sviluppatore</h2><p>FX2 — contatto: <strong>info@fx2.it</strong></p>'
+      + '<h2>Cosa fa l’app con la tua voce e il tuo testo</h2><p>Come viene gestito il tuo audio dipende dalla modalità di trascrizione che <strong>scegli tu</strong> nell’app:</p>'
+      + '<ul><li><strong>Trascrizione sul dispositivo (predefinita, completamente offline).</strong> Quando usi il modello vocale scaricato, l’audio viene trascritto <strong>interamente sul tuo dispositivo</strong>. L’audio e il testo risultante <strong>non vengono inviati da nessuna parte</strong>.</li>'
+      + '<li><strong>Modalità Live (riconoscimento vocale del dispositivo).</strong> La modalità Live usa <strong>il servizio di riconoscimento vocale del tuo dispositivo</strong> (per esempio quello fornito da Google sul telefono). L’audio parlato viene elaborato da quel servizio di sistema secondo i <strong>suoi</strong> termini sulla privacy — Transcry non riceve né conserva una copia oltre alla trascrizione che ti mostra.</li>'
+      + '<li><strong>Trascrizione online con la tua chiave API (BYOK).</strong> Se inserisci la tua chiave API di un provider cloud, Transcry invia l’audio che scegli di trascrivere <strong>direttamente al provider selezionato</strong>, usando la tua chiave:<ul><li><strong>Groq</strong>, <strong>OpenAI</strong> o <strong>AssemblyAI</strong> (a tua scelta).</li><li>Per le etichette dei parlanti di <strong>AssemblyAI</strong>, l’<strong>intero file audio originale</strong> viene caricato su AssemblyAI per l’elaborazione.</li><li>L’audio va <strong>direttamente dal tuo dispositivo a quel provider</strong> — <strong>non</strong> passa dai server di FX2. L’uso di un provider è regolato dall’<strong>informativa sulla privacy di quel provider</strong> e dal tuo account con loro.</li></ul></li>'
+      + '<li><strong>Traduzione (facoltativa).</strong> Se traduci una trascrizione usando la tua chiave cloud, il <strong>testo</strong> da tradurre viene inviato direttamente al provider che hai configurato (Groq o OpenAI). La traduzione offline, quando disponibile, resta sul tuo dispositivo.</li></ul>'
+      + '<p>Scegli tu la modalità. Nulla viene caricato a meno che tu non scelga un’opzione online e fornisca la tua chiave.</p>'
+      + '<h2>Cosa viene memorizzato sul tuo dispositivo</h2><ul><li><strong>Le trascrizioni e le traduzioni</strong> che salvi, e facoltativamente l’<strong>audio originale</strong> degli elementi salvati, sono memorizzati <strong>solo sul tuo dispositivo</strong> (nell’archivio locale dell’app). Non vengono caricati da questa funzione. Eliminando un elemento, o l’app, vengono rimossi.</li><li><strong>Le tue impostazioni</strong>, incluse eventuali <strong>chiavi API</strong> inserite, sono memorizzate <strong>solo sul tuo dispositivo</strong> affinché l’app possa riutilizzarle. Le chiavi non vengono trasmesse a FX2.</li></ul>'
+      + '<h2>Il download del modello vocale</h2><p>Il modello vocale sul dispositivo viene scaricato da <strong>huggingface.co</strong> la prima volta che scegli di installarlo. È un normale download di un modello ML; non vengono inviati dati personali per scaricarlo.</p>'
+      + '<h2>Acquisti (Google Play Billing)</h2><p>Se acquisti un piano (sblocco una tantum o abbonamento), l’acquisto è gestito da <strong>Google Play Billing</strong>. Per confermare cosa hai acquistato, l’app invia il <strong>token di acquisto di Google</strong> e un <strong>identificatore di installazione anonimo e generato casualmente</strong> al nostro server di verifica, che lo controlla con Google e registra lo stato del tuo piano. Questo server <strong>non riceve mai il tuo audio, le trascrizioni o le chiavi API</strong>, e l’identificatore di installazione non è collegato al tuo nome, email o account Google. Google elabora il pagamento secondo la propria informativa sulla privacy.</p>'
+      + '<h2>Feedback</h2><p>Se usi l’opzione di feedback nell’app, l’app <strong>apre la tua app di posta</strong> con un messaggio indirizzato a info@fx2.it. Nulla viene inviato automaticamente — decidi tu se inviarlo e puoi vedere e modificare tutto (inclusi eventuali dettagli diagnostici) prima di farlo. Se ci scrivi, riceviamo ciò che invii.</p>'
+      + '<h2>Cosa <em>non</em> facciamo</h2><ul><li><strong>Nessuna analisi o tracciamento.</strong> L’app non contiene SDK di analisi, pubblicità o tracciamento.</li><li><strong>Nessun account.</strong> Non c’è registrazione né profilo.</li><li><strong>Nessuna vendita o condivisione</strong> di dati personali con terze parti per i loro scopi. (Le uniche terze parti coinvolte sono quelle che <strong>scegli tu</strong>: il servizio vocale del tuo dispositivo, qualsiasi provider cloud per cui fornisci una chiave, Google per i pagamenti e Hugging Face per il download del modello.)</li></ul>'
+      + '<h2>Minori</h2><p>Transcry è uno strumento di produttività generico e non è rivolto ai minori.</p>'
+      + '<h2>Le tue scelte</h2><ul><li>Usa la modalità <strong>sul dispositivo</strong> per mantenere tutto offline.</li><li><strong>Non inserire</strong> una chiave API cloud se non vuoi che audio o testo lascino il tuo dispositivo verso un provider di terze parti.</li><li><strong>Elimina</strong> in qualsiasi momento le trascrizioni/l’audio salvati nell’app, oppure disinstalla l’app per rimuovere tutti i dati memorizzati localmente.</li></ul>'
+      + '<h2>Modifiche</h2><p>Potremmo aggiornare questa informativa man mano che l’app cambia. La data di &ldquo;Ultimo aggiornamento&rdquo; qui sopra riflette la versione attuale.</p>'
+      + '<h2>Contatti</h2><p>Domande su questa informativa o sui tuoi dati: <strong>info@fx2.it</strong></p>',
+
+    es: ''
+      + '<div class="doc-head"><p class="eyebrow">Política de privacidad</p><h1>Transcry — Política de privacidad</h1><p class="sub">Última actualización: 9 de octubre de 2026</p></div>'
+      + '<p class="lead">Transcry (&ldquo;la app&rdquo;) es una app de voz a texto publicada por FX2 (&ldquo;nosotros&rdquo;). Esta política explica qué hace la app con tus datos. En resumen: <strong>Transcry está diseñada para mantener tu audio y tu texto en tu dispositivo.</strong> No usamos analítica, no tenemos cuentas de usuario y nunca vendemos tus datos.</p>'
+      + '<h2>Quién es el desarrollador</h2><p>FX2 — contacto: <strong>info@fx2.it</strong></p>'
+      + '<h2>Qué hace la app con tu voz y tu texto</h2><p>Cómo se trata tu audio depende del modo de transcripción que <strong>tú</strong> elijas en la app:</p>'
+      + '<ul><li><strong>Transcripción en el dispositivo (predeterminada, totalmente sin conexión).</strong> Cuando usas el modelo de voz descargado, tu audio se transcribe <strong>íntegramente en tu dispositivo</strong>. El audio y el texto resultante <strong>no se envían a ninguna parte</strong>.</li>'
+      + '<li><strong>Modo en vivo (reconocimiento de voz del dispositivo).</strong> El modo en vivo usa <strong>el servicio de reconocimiento de voz de tu propio dispositivo</strong> (por ejemplo, el que ofrece Google en tu teléfono). Tu audio hablado lo procesa ese servicio del sistema según <strong>sus propios</strong> términos de privacidad — Transcry no recibe ni guarda una copia más allá de la transcripción que te muestra.</li>'
+      + '<li><strong>Transcripción en línea con tu propia clave API (BYOK).</strong> Si introduces tu propia clave API de un proveedor en la nube, Transcry envía el audio que eliges transcribir <strong>directamente al proveedor que seleccionaste</strong>, usando tu clave:<ul><li><strong>Groq</strong>, <strong>OpenAI</strong> o <strong>AssemblyAI</strong> (a tu elección).</li><li>Para las etiquetas de hablante de <strong>AssemblyAI</strong>, se sube <strong>todo el archivo de audio original</strong> a AssemblyAI para procesarlo.</li><li>El audio va <strong>directamente desde tu dispositivo a ese proveedor</strong> — <strong>no</strong> pasa por los servidores de FX2. Tu uso de un proveedor se rige por la <strong>política de privacidad de ese proveedor</strong> y tu cuenta con ellos.</li></ul></li>'
+      + '<li><strong>Traducción (opcional).</strong> Si traduces una transcripción con tu propia clave en la nube, el <strong>texto</strong> a traducir se envía directamente al proveedor que configuraste (Groq u OpenAI). La traducción sin conexión, cuando está disponible, permanece en tu dispositivo.</li></ul>'
+      + '<p>Tú eliges el modo. No se sube nada a menos que elijas una opción en línea y proporciones tu propia clave.</p>'
+      + '<h2>Qué se guarda en tu dispositivo</h2><ul><li><strong>Las transcripciones y traducciones</strong> que guardas, y opcionalmente el <strong>audio original</strong> de los elementos guardados, se almacenan <strong>solo en tu dispositivo</strong> (en el almacenamiento local de la app). Esta función no los sube. Al eliminar un elemento, o la app, se borran.</li><li><strong>Tus ajustes</strong>, incluidas las <strong>claves API</strong> que introduzcas, se guardan <strong>solo en tu dispositivo</strong> para que la app pueda reutilizarlos. Las claves no se transmiten a FX2.</li></ul>'
+      + '<h2>La descarga del modelo de voz</h2><p>El modelo de voz en el dispositivo se descarga de <strong>huggingface.co</strong> la primera vez que eliges instalarlo. Es una descarga normal de un modelo de ML; no se envían datos personales para obtenerlo.</p>'
+      + '<h2>Compras (Google Play Billing)</h2><p>Si compras un plan (desbloqueo único o suscripción), la compra la gestiona <strong>Google Play Billing</strong>. Para confirmar qué compraste, la app envía el <strong>token de compra de Google</strong> y un <strong>identificador de instalación anónimo y generado al azar</strong> a nuestro servidor de verificación, que lo comprueba con Google y registra el estado de tu plan. Este servidor <strong>nunca recibe tu audio, transcripciones ni claves API</strong>, y el identificador de instalación no se vincula a tu nombre, correo ni cuenta de Google. Google procesa el pago según su propia política de privacidad.</p>'
+      + '<h2>Comentarios</h2><p>Si usas la opción de comentarios dentro de la app, la app <strong>abre tu propia app de correo</strong> con un mensaje dirigido a info@fx2.it. No se envía nada automáticamente — tú decides si enviarlo y puedes ver y editar todo (incluidos los detalles de diagnóstico) antes de hacerlo. Si nos escribes, recibimos lo que envías.</p>'
+      + '<h2>Qué <em>no</em> hacemos</h2><ul><li><strong>Sin analítica ni rastreo.</strong> La app no contiene SDK de analítica, publicidad ni rastreo.</li><li><strong>Sin cuentas.</strong> No hay registro ni perfil.</li><li><strong>Sin venta ni compartición</strong> de datos personales con terceros para sus propios fines. (Los únicos terceros implicados son los que <strong>tú</strong> eliges: el servicio de voz de tu dispositivo, cualquier proveedor en la nube para el que facilites una clave, Google para los pagos y Hugging Face para la descarga del modelo.)</li></ul>'
+      + '<h2>Menores</h2><p>Transcry es una herramienta de productividad de uso general y no está dirigida a menores.</p>'
+      + '<h2>Tus opciones</h2><ul><li>Usa el modo <strong>en el dispositivo</strong> para mantener todo sin conexión.</li><li><strong>No introduzcas</strong> una clave API en la nube si no quieres que ningún audio o texto salga de tu dispositivo hacia un proveedor externo.</li><li><strong>Elimina</strong> las transcripciones/el audio guardados en la app en cualquier momento, o desinstala la app para borrar todos los datos almacenados localmente.</li></ul>'
+      + '<h2>Cambios</h2><p>Podemos actualizar esta política a medida que la app cambie. La fecha de &ldquo;Última actualización&rdquo; de arriba refleja la versión actual.</p>'
+      + '<h2>Contacto</h2><p>Preguntas sobre esta política o tus datos: <strong>info@fx2.it</strong></p>',
+
+    fr: ''
+      + '<div class="doc-head"><p class="eyebrow">Politique de confidentialité</p><h1>Transcry — Politique de confidentialité</h1><p class="sub">Dernière mise à jour : 9 octobre 2026</p></div>'
+      + '<p class="lead">Transcry (&laquo;&nbsp;l’app&nbsp;&raquo;) est une app de reconnaissance vocale publiée par FX2 (&laquo;&nbsp;nous&nbsp;&raquo;). Cette politique explique ce que l’app fait de vos données. En bref : <strong>Transcry est conçue pour garder votre audio et votre texte sur votre appareil.</strong> Nous n’utilisons aucune analyse, nous n’avons pas de comptes utilisateur et nous ne vendons jamais vos données.</p>'
+      + '<h2>Qui est le développeur</h2><p>FX2 — contact : <strong>info@fx2.it</strong></p>'
+      + '<h2>Ce que l’app fait de votre voix et de votre texte</h2><p>La façon dont votre audio est traité dépend du mode de transcription que <strong>vous</strong> choisissez dans l’app :</p>'
+      + '<ul><li><strong>Transcription sur l’appareil (par défaut, totalement hors ligne).</strong> Lorsque vous utilisez le modèle vocal téléchargé, votre audio est transcrit <strong>entièrement sur votre appareil</strong>. L’audio et le texte obtenu <strong>ne sont envoyés nulle part</strong>.</li>'
+      + '<li><strong>Mode Live (reconnaissance vocale de l’appareil).</strong> Le mode Live utilise <strong>le service de reconnaissance vocale de votre appareil</strong> (par exemple celui fourni par Google sur votre téléphone). Votre audio parlé est traité par ce service système selon <strong>ses propres</strong> conditions de confidentialité — Transcry ne reçoit ni ne conserve de copie au-delà de la transcription qu’elle vous montre.</li>'
+      + '<li><strong>Transcription en ligne avec votre propre clé API (BYOK).</strong> Si vous saisissez votre propre clé API d’un fournisseur cloud, Transcry envoie l’audio que vous choisissez de transcrire <strong>directement au fournisseur sélectionné</strong>, avec votre clé :<ul><li><strong>Groq</strong>, <strong>OpenAI</strong> ou <strong>AssemblyAI</strong> (votre choix).</li><li>Pour les étiquettes de locuteur d’<strong>AssemblyAI</strong>, l’<strong>intégralité du fichier audio original</strong> est transférée vers AssemblyAI pour traitement.</li><li>L’audio va <strong>directement de votre appareil à ce fournisseur</strong> — il <strong>ne</strong> passe <strong>pas</strong> par les serveurs de FX2. Votre utilisation d’un fournisseur est régie par la <strong>politique de confidentialité de ce fournisseur</strong> et votre compte chez lui.</li></ul></li>'
+      + '<li><strong>Traduction (facultative).</strong> Si vous traduisez une transcription avec votre propre clé cloud, le <strong>texte</strong> à traduire est envoyé directement au fournisseur que vous avez configuré (Groq ou OpenAI). La traduction hors ligne, lorsqu’elle est disponible, reste sur votre appareil.</li></ul>'
+      + '<p>Vous choisissez le mode. Rien n’est envoyé à moins que vous ne choisissiez une option en ligne et ne fournissiez votre propre clé.</p>'
+      + '<h2>Ce qui est stocké sur votre appareil</h2><ul><li><strong>Les transcriptions et traductions</strong> que vous enregistrez, et éventuellement l’<strong>audio original</strong> des éléments enregistrés, sont stockés <strong>uniquement sur votre appareil</strong> (dans le stockage local de l’app). Cette fonction ne les envoie pas. Supprimer un élément, ou l’app, les efface.</li><li><strong>Vos réglages</strong>, y compris les <strong>clés API</strong> que vous saisissez, sont stockés <strong>uniquement sur votre appareil</strong> afin que l’app puisse les réutiliser. Les clés ne sont pas transmises à FX2.</li></ul>'
+      + '<h2>Le téléchargement du modèle vocal</h2><p>Le modèle vocal sur l’appareil est téléchargé depuis <strong>huggingface.co</strong> la première fois que vous choisissez de l’installer. C’est un téléchargement normal d’un modèle de ML ; aucune donnée personnelle n’est envoyée pour l’obtenir.</p>'
+      + '<h2>Achats (Google Play Billing)</h2><p>Si vous achetez une formule (déblocage unique ou abonnement), l’achat est géré par <strong>Google Play Billing</strong>. Pour confirmer votre achat, l’app envoie le <strong>jeton d’achat Google</strong> et un <strong>identifiant d’installation anonyme généré aléatoirement</strong> à notre serveur de vérification, qui le contrôle auprès de Google et enregistre l’état de votre formule. Ce serveur <strong>ne reçoit jamais votre audio, vos transcriptions ni vos clés API</strong>, et l’identifiant d’installation n’est lié ni à votre nom, ni à votre e-mail, ni à votre compte Google. Google traite le paiement selon sa propre politique de confidentialité.</p>'
+      + '<h2>Retours</h2><p>Si vous utilisez l’option de retour dans l’app, l’app <strong>ouvre votre propre app de messagerie</strong> avec un message adressé à info@fx2.it. Rien n’est envoyé automatiquement — vous décidez de l’envoyer et vous pouvez tout voir et modifier (y compris les détails de diagnostic) avant. Si vous nous écrivez, nous recevons ce que vous envoyez.</p>'
+      + '<h2>Ce que nous <em>ne</em> faisons <em>pas</em></h2><ul><li><strong>Aucune analyse ni suivi.</strong> L’app ne contient aucun SDK d’analyse, de publicité ou de suivi.</li><li><strong>Aucun compte.</strong> Pas d’inscription ni de profil.</li><li><strong>Aucune vente ni partage</strong> de données personnelles avec des tiers à leurs propres fins. (Les seuls tiers concernés sont ceux que <strong>vous</strong> choisissez : le service vocal de votre appareil, tout fournisseur cloud pour lequel vous fournissez une clé, Google pour les paiements et Hugging Face pour le téléchargement du modèle.)</li></ul>'
+      + '<h2>Enfants</h2><p>Transcry est un outil de productivité généraliste et n’est pas destiné aux enfants.</p>'
+      + '<h2>Vos choix</h2><ul><li>Utilisez le mode <strong>sur l’appareil</strong> pour tout garder hors ligne.</li><li><strong>Ne saisissez pas</strong> de clé API cloud si vous ne voulez pas qu’un audio ou un texte quitte votre appareil vers un fournisseur tiers.</li><li><strong>Supprimez</strong> à tout moment les transcriptions/l’audio enregistrés dans l’app, ou désinstallez l’app pour effacer toutes les données stockées localement.</li></ul>'
+      + '<h2>Modifications</h2><p>Nous pouvons mettre à jour cette politique à mesure que l’app évolue. La date de &laquo;&nbsp;Dernière mise à jour&nbsp;&raquo; ci-dessus reflète la version actuelle.</p>'
+      + '<h2>Contact</h2><p>Questions sur cette politique ou vos données : <strong>info@fx2.it</strong></p>',
+
+    de: ''
+      + '<div class="doc-head"><p class="eyebrow">Datenschutzerklärung</p><h1>Transcry — Datenschutzerklärung</h1><p class="sub">Zuletzt aktualisiert: 9. Oktober 2026</p></div>'
+      + '<p class="lead">Transcry (&bdquo;die App&ldquo;) ist eine Sprache-zu-Text-App, herausgegeben von FX2 (&bdquo;wir&ldquo;). Diese Erklärung beschreibt, was die App mit deinen Daten macht. Kurz gesagt: <strong>Transcry ist darauf ausgelegt, dein Audio und deinen Text auf deinem Gerät zu behalten.</strong> Wir nutzen keine Analyse, haben keine Benutzerkonten und verkaufen deine Daten niemals.</p>'
+      + '<h2>Wer der Entwickler ist</h2><p>FX2 — Kontakt: <strong>info@fx2.it</strong></p>'
+      + '<h2>Was die App mit deiner Stimme und deinem Text macht</h2><p>Wie dein Audio behandelt wird, hängt davon ab, welchen Transkriptionsmodus <strong>du</strong> in der App wählst:</p>'
+      + '<ul><li><strong>Transkription auf dem Gerät (Standard, komplett offline).</strong> Wenn du das heruntergeladene Sprachmodell nutzt, wird dein Audio <strong>vollständig auf deinem Gerät</strong> transkribiert. Das Audio und der entstehende Text werden <strong>nirgendwohin gesendet</strong>.</li>'
+      + '<li><strong>Live-Modus (Spracherkennung des Geräts).</strong> Der Live-Modus nutzt <strong>den Spracherkennungsdienst deines eigenen Geräts</strong> (zum Beispiel den von Google auf deinem Telefon). Dein gesprochenes Audio wird von diesem System-Dienst nach <strong>dessen eigenen</strong> Datenschutzbedingungen verarbeitet — Transcry erhält oder speichert keine Kopie über das angezeigte Transkript hinaus.</li>'
+      + '<li><strong>Online-Transkription mit eigenem API-Schlüssel (BYOK).</strong> Wenn du deinen eigenen API-Schlüssel eines Cloud-Anbieters eingibst, sendet Transcry das Audio, das du transkribieren möchtest, <strong>direkt an den von dir gewählten Anbieter</strong>, mit deinem Schlüssel:<ul><li><strong>Groq</strong>, <strong>OpenAI</strong> oder <strong>AssemblyAI</strong> (deine Wahl).</li><li>Für die Sprecher-Kennzeichnungen von <strong>AssemblyAI</strong> wird die <strong>gesamte Original-Audiodatei</strong> zur Verarbeitung an AssemblyAI hochgeladen.</li><li>Das Audio geht <strong>direkt von deinem Gerät an diesen Anbieter</strong> — es läuft <strong>nicht</strong> über die Server von FX2. Deine Nutzung eines Anbieters unterliegt der <strong>Datenschutzerklärung dieses Anbieters</strong> und deinem Konto bei ihm.</li></ul></li>'
+      + '<li><strong>Übersetzung (optional).</strong> Wenn du ein Transkript mit deinem eigenen Cloud-Schlüssel übersetzt, wird der zu übersetzende <strong>Text</strong> direkt an den von dir konfigurierten Anbieter gesendet (Groq oder OpenAI). Die Offline-Übersetzung bleibt, sofern verfügbar, auf deinem Gerät.</li></ul>'
+      + '<p>Du wählst den Modus. Es wird nichts hochgeladen, es sei denn, du wählst eine Online-Option und gibst deinen eigenen Schlüssel an.</p>'
+      + '<h2>Was auf deinem Gerät gespeichert wird</h2><ul><li><strong>Transkripte und Übersetzungen</strong>, die du speicherst, und optional das <strong>Original-Audio</strong> gespeicherter Einträge, werden <strong>nur auf deinem Gerät</strong> gespeichert (im lokalen Speicher der App). Diese Funktion lädt sie nicht hoch. Wenn du einen Eintrag oder die App löschst, werden sie entfernt.</li><li><strong>Deine Einstellungen</strong>, einschließlich eingegebener <strong>API-Schlüssel</strong>, werden <strong>nur auf deinem Gerät</strong> gespeichert, damit die App sie wiederverwenden kann. Schlüssel werden nicht an FX2 übertragen.</li></ul>'
+      + '<h2>Der Download des Sprachmodells</h2><p>Das Sprachmodell auf dem Gerät wird von <strong>huggingface.co</strong> heruntergeladen, wenn du es zum ersten Mal installierst. Das ist ein normaler Datei-Download eines ML-Modells; zum Abruf werden keine personenbezogenen Daten gesendet.</p>'
+      + '<h2>Käufe (Google Play Billing)</h2><p>Wenn du einen Plan kaufst (einmalige Freischaltung oder Abo), wird der Kauf über <strong>Google Play Billing</strong> abgewickelt. Zur Bestätigung deines Kaufs sendet die App das <strong>Google-Kauf-Token</strong> und eine <strong>anonyme, zufällig erzeugte Installations-Kennung</strong> an unseren Verifizierungsserver, der dies bei Google prüft und deinen Plan-Status speichert. Dieser Server <strong>erhält niemals dein Audio, deine Transkripte oder API-Schlüssel</strong>, und die Installations-Kennung ist nicht mit deinem Namen, deiner E-Mail oder deinem Google-Konto verknüpft. Google verarbeitet die Zahlung nach seiner eigenen Datenschutzerklärung.</p>'
+      + '<h2>Feedback</h2><p>Wenn du die Feedback-Option in der App nutzt, <strong>öffnet die App deine eigene E-Mail-App</strong> mit einer Nachricht an info@fx2.it. Es wird nichts automatisch gesendet — du entscheidest, ob du sie sendest, und kannst alles (einschließlich etwaiger Diagnosedetails) vorher sehen und bearbeiten. Wenn du uns schreibst, erhalten wir, was du sendest.</p>'
+      + '<h2>Was wir <em>nicht</em> tun</h2><ul><li><strong>Keine Analyse oder Tracking.</strong> Die App enthält keine Analyse-, Werbe- oder Tracking-SDKs.</li><li><strong>Keine Konten.</strong> Es gibt keine Registrierung und kein Profil.</li><li><strong>Kein Verkauf und keine Weitergabe</strong> personenbezogener Daten an Dritte für deren eigene Zwecke. (Die einzigen beteiligten Dritten sind die, die <strong>du</strong> wählst: der Sprachdienst deines Geräts, jeder Cloud-Anbieter, für den du einen Schlüssel angibst, Google für Zahlungen und Hugging Face für den Modell-Download.)</li></ul>'
+      + '<h2>Kinder</h2><p>Transcry ist ein allgemeines Produktivitäts-Tool und richtet sich nicht an Kinder.</p>'
+      + '<h2>Deine Optionen</h2><ul><li>Nutze den Modus <strong>auf dem Gerät</strong>, um alles offline zu halten.</li><li><strong>Gib keinen</strong> Cloud-API-Schlüssel ein, wenn du nicht willst, dass Audio oder Text dein Gerät an einen Drittanbieter verlassen.</li><li><strong>Lösche</strong> gespeicherte Transkripte/Audios jederzeit in der App, oder deinstalliere die App, um alle lokal gespeicherten Daten zu entfernen.</li></ul>'
+      + '<h2>Änderungen</h2><p>Wir können diese Erklärung aktualisieren, wenn sich die App ändert. Das Datum &bdquo;Zuletzt aktualisiert&ldquo; oben spiegelt die aktuelle Version wider.</p>'
+      + '<h2>Kontakt</h2><p>Fragen zu dieser Erklärung oder deinen Daten: <strong>info@fx2.it</strong></p>'
+  };
+
   (function () {
-    var root = document.documentElement, btn = document.getElementById('themeBtn');
+    var root = document.documentElement;
+    var sel = document.getElementById('langSel');
+    var themeBtn = document.getElementById('themeBtn');
+    var doc = document.getElementById('doc');
+
+    function pickLang() {
+      var saved; try { saved = localStorage.getItem('transcry-site-lang'); } catch (e) {}
+      if (saved && DOC[saved]) return saved;
+      var n = (navigator.language || 'en').slice(0, 2).toLowerCase();
+      return DOC[n] ? n : 'en';
+    }
+    function apply(lang) {
+      if (!DOC[lang]) lang = 'en';
+      doc.innerHTML = DOC[lang] + '<p class="i18n-note">' + NOTE[lang] + '</p>';
+      var c = CHROME[lang];
+      document.getElementById('backTxt').textContent = c.back;
+      document.getElementById('fHome').textContent = c.home;
+      document.getElementById('fFeatures').textContent = c.features;
+      document.getElementById('legalTxt').innerHTML = c.legal;
+      root.setAttribute('lang', lang);
+      sel.value = lang;
+    }
+    sel.addEventListener('change', function () {
+      apply(sel.value);
+      try { localStorage.setItem('transcry-site-lang', sel.value); } catch (e) {}
+    });
+    apply(pickLang());
+
     try { var st = localStorage.getItem('transcry-site-theme'); if (st) root.setAttribute('data-theme', st); } catch (e) {}
-    function cur() {
+    function curTheme() {
       var a = root.getAttribute('data-theme');
       if (a) return a;
       return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
-    btn.addEventListener('click', function () {
-      var next = cur() === 'dark' ? 'light' : 'dark';
+    themeBtn.addEventListener('click', function () {
+      var next = curTheme() === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       try { localStorage.setItem('transcry-site-theme', next); } catch (e) {}
     });
