@@ -129,7 +129,7 @@
     <a class="brand" href="index.html"><img src="assets/icon.png" alt="Transcry icon"> Transcry</a>
     <div class="foot-links">
       <a href="index.html" id="fHome">Home</a>
-      <a href="index.html#features" id="fFeatures">Features</a>
+      <a href="terms.html" id="fTerms">Terms</a>
       <a href="mailto:info@fx2.it">info@fx2.it</a>
     </div>
   </div>
@@ -140,15 +140,15 @@
   // The policy body is rendered per language. The English text is the
   // authoritative reference (stated in the note each translation carries).
   var CHROME = {
-    en: { back:"Back to Transcry", home:"Home", features:"Features",
+    en: { back:"Back to Transcry", home:"Home", terms:"Terms",
       legal:"Transcry is a product of FX2 Information Services Limited. This page is the app’s privacy policy, referenced from its Google Play listing." },
-    it: { back:"Torna a Transcry", home:"Home", features:"Funzioni",
+    it: { back:"Torna a Transcry", home:"Home", terms:"Termini",
       legal:"Transcry è un prodotto di FX2 Information Services Limited. Questa pagina è l’informativa sulla privacy dell’app, collegata dalla sua scheda su Google Play." },
-    es: { back:"Volver a Transcry", home:"Inicio", features:"Funciones",
+    es: { back:"Volver a Transcry", home:"Inicio", terms:"Condiciones",
       legal:"Transcry es un producto de FX2 Information Services Limited. Esta página es la política de privacidad de la app, referenciada desde su ficha de Google Play." },
-    fr: { back:"Retour à Transcry", home:"Accueil", features:"Fonctions",
+    fr: { back:"Retour à Transcry", home:"Accueil", terms:"Conditions",
       legal:"Transcry est un produit de FX2 Information Services Limited. Cette page est la politique de confidentialité de l’app, référencée depuis sa fiche Google Play." },
-    de: { back:"Zurück zu Transcry", home:"Start", features:"Funktionen",
+    de: { back:"Zurück zu Transcry", home:"Start", terms:"Bedingungen",
       legal:"Transcry ist ein Produkt der FX2 Information Services Limited. Diese Seite ist die Datenschutzerklärung der App, verlinkt aus dem Google-Play-Eintrag." }
   };
 
@@ -280,7 +280,7 @@
       var c = CHROME[lang];
       document.getElementById('backTxt').textContent = c.back;
       document.getElementById('fHome').textContent = c.home;
-      document.getElementById('fFeatures').textContent = c.features;
+      document.getElementById('fTerms').textContent = c.terms;
       document.getElementById('legalTxt').innerHTML = c.legal;
       root.setAttribute('lang', lang);
       sel.value = lang;
