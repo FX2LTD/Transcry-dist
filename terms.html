@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Transcry — Terms of Service</title>
+<meta name="description" content="Terms of Service for the Transcry voice-to-text app by FX2.">
+<link rel="canonical" href="https://fx2ltd.github.io/Transcry-dist/terms.html">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  :root {
+    --bg: #0C0F16; --surface: #151A24; --surface-2: #1B212D;
+    --fg: #ECEEF3; --dim: #99A0B2; --line: #272E3C;
+    --accent: #47D49B; --accent-soft: rgba(71,212,155,.14);
+    --font-display: 'Sora', system-ui, sans-serif;
+    --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #F6F7F9; --surface: #FFFFFF; --surface-2: #F0F2F6;
+      --fg: #14171F; --dim: #596074; --line: #E3E6EC;
+      --accent: #0E8F6E; --accent-soft: rgba(14,143,110,.10);
+      color-scheme: light;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #F6F7F9; --surface: #FFFFFF; --surface-2: #F0F2F6;
+    --fg: #14171F; --dim: #596074; --line: #E3E6EC;
+    --accent: #0E8F6E; --accent-soft: rgba(14,143,110,.10);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body);
+    font-size: 16px; line-height: 1.68; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+  a { color: var(--accent); }
+  strong { color: var(--fg); }
+
+  .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: color-mix(in oklab, var(--bg) 86%, transparent);
+    backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+    background: var(--bg); z-index: 21; }
+  .bar { width: 100%; max-width: 820px; margin-inline: auto;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 12px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display);
+    font-weight: 700; font-size: 18px; letter-spacing: -0.01em; color: var(--fg); text-decoration: none; }
+  .brand img { width: 30px; height: 30px; border-radius: 8px; display: block; }
+  .bar-actions { display: flex; align-items: center; gap: 10px; }
+  .back { font-size: 14px; color: var(--dim); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .back:hover { color: var(--accent); }
+  .ctl { background: transparent; border: 1px solid var(--line); color: var(--dim); height: 38px; border-radius: 999px; cursor: pointer; }
+  .ctl:hover { color: var(--accent); border-color: var(--accent); }
+  .lang-select { font-family: var(--font-mono); font-size: 12px; letter-spacing: .05em; padding: 0 8px; color: var(--fg); }
+  .theme-toggle { width: 38px; display: grid; place-items: center; flex: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  .wrap { max-width: 760px; margin: 0 auto;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+    padding-block: clamp(32px, 6vw, 56px) 40px; }
+  .doc-head { border-bottom: 1px solid var(--line); padding-bottom: 22px; margin-bottom: 20px; }
+  .eyebrow { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .14em;
+    font-size: 12px; color: var(--accent); margin: 0 0 10px; }
+  h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.12; margin: 0 0 8px; }
+  .sub { color: var(--dim); font-size: 0.95rem; margin: 0; }
+  h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; margin: 40px 0 12px; }
+  p, li { margin: 0 0 13px; }
+  ul { padding-left: 1.3em; }
+  ul ul { margin-top: 10px; }
+  li { margin-bottom: 9px; }
+  .lead { background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px 22px; margin: 0 0 10px; font-size: 1.05rem; }
+  .lead strong { color: var(--accent); }
+  .i18n-note { color: var(--dim); font-size: 0.86rem; border-left: 3px solid var(--line);
+    padding-left: 14px; margin: 26px 0 0; }
+
+  footer { border-top: 1px solid var(--line); background: var(--surface); margin-top: 36px; }
+  .foot { max-width: 760px; margin-inline: auto;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+    padding-block: 34px; display: flex; flex-wrap: wrap; gap: 16px 40px; justify-content: space-between; align-items: center; }
+  .foot .brand { font-size: 16px; }
+  .foot .brand img { width: 24px; height: 24px; }
+  .foot-links { display: flex; gap: 20px; font-size: 14px; }
+  .foot-links a { color: var(--dim); text-decoration: none; }
+  .foot-links a:hover { color: var(--fg); }
+  .legal { color: var(--dim); font-size: 12.5px; max-width: 760px; margin: 14px auto 0;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px)); padding-bottom: 36px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="bar">
+    <a class="brand" href="index.html"><img src="assets/icon.png" alt="Transcry icon"> Transcry</a>
+    <div class="bar-actions">
+      <a class="back" href="index.html">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span id="backTxt">Back to Transcry</span>
+      </a>
+      <select class="ctl lang-select" id="langSel" aria-label="Language">
+        <option value="en">EN</option><option value="it">IT</option>
+        <option value="es">ES</option><option value="fr">FR</option><option value="de">DE</option>
+      </select>
+      <button class="ctl theme-toggle" id="themeBtn" aria-label="Toggle theme" title="Toggle theme">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="doc"><!-- filled by script --></main>
+
+<footer>
+  <div class="foot">
+    <a class="brand" href="index.html"><img src="assets/icon.png" alt="Transcry icon"> Transcry</a>
+    <div class="foot-links">
+      <a href="index.html" id="fHome">Home</a>
+      <a href="privacy.html" id="fPrivacy">Privacy</a>
+      <a href="mailto:info@fx2.it">info@fx2.it</a>
+    </div>
+  </div>
+</footer>
+<p class="legal" id="legalTxt">Transcry is a product of FX2 Information Services Limited. This page is the app&rsquo;s Terms of Service, referenced from its Google Play listing.</p>
+
+<script>
+  // The terms body is rendered per language. The English text is the
+  // authoritative reference (stated in the note each translation carries).
+  var CHROME = {
+    en: { back:"Back to Transcry", home:"Home", privacy:"Privacy",
+      legal:"Transcry is a product of FX2 Information Services Limited. This page is the app’s Terms of Service, referenced from its Google Play listing." },
+    it: { back:"Torna a Transcry", home:"Home", privacy:"Privacy",
+      legal:"Transcry è un prodotto di FX2 Information Services Limited. Questa pagina contiene i Termini di servizio dell’app, collegati dalla sua scheda su Google Play." },
+    es: { back:"Volver a Transcry", home:"Inicio", privacy:"Privacidad",
+      legal:"Transcry es un producto de FX2 Information Services Limited. Esta página contiene las Condiciones del servicio de la app, referenciadas desde su ficha de Google Play." },
+    fr: { back:"Retour à Transcry", home:"Accueil", privacy:"Confidentialité",
+      legal:"Transcry est un produit de FX2 Information Services Limited. Cette page contient les Conditions d’utilisation de l’app, référencées depuis sa fiche Google Play." },
+    de: { back:"Zurück zu Transcry", home:"Start", privacy:"Datenschutz",
+      legal:"Transcry ist ein Produkt der FX2 Information Services Limited. Diese Seite enthält die Nutzungsbedingungen der App, verlinkt aus dem Google-Play-Eintrag." }
+  };
+
+  var NOTE = {
+    en: "These terms are also available in other languages (use the selector above). The English version is the authoritative reference; in case of any discrepancy, the English text prevails.",
+    it: "Questi termini sono disponibili anche in altre lingue (usa il selettore in alto). La versione inglese è il riferimento ufficiale; in caso di discrepanze, prevale il testo inglese.",
+    es: "Estas condiciones también están disponibles en otros idiomas (usa el selector de arriba). La versión en inglés es la referencia oficial; en caso de discrepancia, prevalece el texto en inglés.",
+    fr: "Ces conditions sont aussi disponibles dans d’autres langues (utilisez le sélecteur ci-dessus). La version anglaise fait foi ; en cas de divergence, le texte anglais prévaut.",
+    de: "Diese Bedingungen sind auch in anderen Sprachen verfügbar (Auswahl oben). Maßgeblich ist die englische Fassung; bei Abweichungen gilt der englische Text."
+  };
+
+  var DOC = {
+    en: ''
+      + '<div class="doc-head"><p class="eyebrow">Terms of Service</p><h1>Transcry — Terms of Service</h1><p class="sub">Last updated: 5 November 2026</p></div>'
+      + '<p class="lead">These Terms of Service (&ldquo;Terms&rdquo;) govern your use of <strong>Transcry</strong> (&ldquo;the app&rdquo;), a voice-to-text app published by <strong>FX2 Information Services Limited</strong> (&ldquo;FX2&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;). By installing or using the app, you agree to these Terms. If you do not agree, do not use the app.</p>'
+      + '<h2>1. Who we are</h2><p>The app is provided by <strong>FX2 Information Services Limited</strong>, a company registered in England &amp; Wales. Contact: <strong>info@fx2.it</strong>.</p>'
+      + '<h2>2. Licence to use the app</h2><p>We grant you a personal, non-exclusive, non-transferable, revocable licence to install and use the app on devices you control, for your own lawful use, subject to these Terms and the <strong>Google Play Terms of Service</strong>. You may not copy, modify, reverse-engineer, resell, or redistribute the app except to the extent this restriction cannot be excluded by law.</p>'
+      + '<h2>3. How the app works</h2><p>Transcry converts speech to text. Depending on the mode <strong>you</strong> choose, transcription runs entirely on your device (offline), via your device&rsquo;s own speech-recognition service, or via a third-party cloud provider using an API key <strong>you</strong> supply. Full detail on data handling is in our <a href="privacy.html">Privacy Policy</a>.</p>'
+      + '<h2>4. Your own API keys and third-party providers (BYOK)</h2><ul>'
+      + '<li>If you enter your own API key for a cloud provider (such as Groq, OpenAI, or AssemblyAI), you are using <strong>your own account</strong> with that provider. You are solely responsible for your keys, for keeping them confidential, and for any usage, fees, or charges that provider bills to you.</li>'
+      + '<li>Your use of any third-party provider is governed by <strong>that provider&rsquo;s</strong> own terms and privacy policy. FX2 is not a party to that relationship and is <strong>not responsible</strong> for third-party services, their availability, accuracy, pricing, or data practices.</li>'
+      + '<li>Audio or text you send to a third-party provider goes <strong>directly from your device to that provider</strong> and does not pass through FX2&rsquo;s servers.</li></ul>'
+      + '<h2>5. Plans, purchases and subscriptions</h2><ul>'
+      + '<li><strong>Billing is handled by Google Play.</strong> Any purchase — a one-time unlock or a subscription — is processed by <strong>Google Play Billing</strong> under your Google account. We do not receive or store your payment card details.</li>'
+      + '<li><strong>Subscriptions</strong> (for example, a Pro monthly or yearly plan) renew automatically at the then-current price until cancelled. Any free-trial period, if offered, converts to a paid subscription unless you cancel before it ends.</li>'
+      + '<li><strong>Manage or cancel</strong> a subscription at any time in Google Play → Subscriptions. Cancelling stops future renewals; access continues until the end of the current paid period.</li>'
+      + '<li><strong>Prices</strong> may change; we will give notice as required by Google Play and applicable law before a change affects you.</li></ul>'
+      + '<h2>6. Refunds</h2><p>Refunds for purchases made through Google Play are handled under <strong>Google Play&rsquo;s refund policies</strong> and your statutory rights. For purchase or refund issues, use Google Play&rsquo;s support channels. Where you have a statutory right to a refund under the laws of your country, those rights are not affected by these Terms.</p>'
+      + '<h2>7. Acceptable use</h2><p>You agree not to use the app to break the law, to infringe anyone&rsquo;s rights, or to record or transcribe audio without any consent required by the law that applies to you. You are responsible for the content you capture, transcribe, store, or share using the app.</p>'
+      + '<h2>8. Your content</h2><p>Transcripts, translations, audio and settings you create stay <strong>on your device</strong> (see the Privacy Policy). You retain all rights to your content. We claim no ownership of it, and we do not access it.</p>'
+      + '<h2>9. Intellectual property</h2><p>The app itself, its name, design, and code are owned by FX2 or its licensors and are protected by law. The on-device speech and translation models are provided by their respective third-party licensors under their own licences.</p>'
+      + '<h2>10. Disclaimer</h2><p>Transcription and translation are produced by machine-learning models and <strong>may contain errors</strong>. The app is provided <strong>&ldquo;as is&rdquo; and &ldquo;as available&rdquo;</strong>, without warranties of any kind to the fullest extent permitted by law. You should not rely on the output where accuracy is critical without independently checking it. We do not warrant that the app will be uninterrupted or error-free, or that third-party services it can connect to will be available.</p>'
+      + '<h2>11. Limitation of liability</h2><p>To the fullest extent permitted by law, FX2 will not be liable for indirect or consequential loss, loss of data, or fees charged to you by a third-party provider you chose to use. <strong>Nothing in these Terms limits or excludes liability that cannot be limited or excluded by law</strong>, including liability for death or personal injury caused by negligence, for fraud, or your mandatory statutory rights as a consumer.</p>'
+      + '<h2>12. Consumer rights (EEA / UK)</h2><p>If you are a consumer in the European Economic Area or the United Kingdom, you have statutory rights (including, where applicable, rights relating to digital content and the right to cancel) that these Terms do not affect. These Terms apply in addition to, and do not override, those rights.</p>'
+      + '<h2>13. Changes to these Terms</h2><p>We may update these Terms as the app changes. The &ldquo;Last updated&rdquo; date above reflects the current version. If a change materially reduces your rights, we will take reasonable steps to notify you. Continuing to use the app after a change means you accept the updated Terms.</p>'
+      + '<h2>14. Termination</h2><p>You may stop using the app and uninstall it at any time. We may suspend or end your licence if you materially breach these Terms or use the app unlawfully. Terms that by their nature should survive (for example, disclaimers and limitation of liability) continue to apply after termination.</p>'
+      + '<h2>15. Governing law</h2><p>These Terms are governed by the laws of <strong>England &amp; Wales</strong>. If you are a consumer, you benefit from any mandatory protections of the law of your country of residence, and you may bring proceedings in the courts there where the law allows.</p>'
+      + '<h2>16. Contact</h2><p>Questions about these Terms: <strong>info@fx2.it</strong></p>',
+
+    it: ''
+      + '<div class="doc-head"><p class="eyebrow">Termini di servizio</p><h1>Transcry — Termini di servizio</h1><p class="sub">Ultimo aggiornamento: 5 novembre 2026</p></div>'
+      + '<p class="lead">Questi Termini di servizio (&ldquo;Termini&rdquo;) regolano l’uso di <strong>Transcry</strong> (&ldquo;l’app&rdquo;), un’app di trascrizione vocale pubblicata da <strong>FX2 Information Services Limited</strong> (&ldquo;FX2&rdquo;, &ldquo;noi&rdquo;). Installando o usando l’app, accetti questi Termini. Se non li accetti, non usare l’app.</p>'
+      + '<h2>1. Chi siamo</h2><p>L’app è fornita da <strong>FX2 Information Services Limited</strong>, società registrata in Inghilterra e Galles. Contatto: <strong>info@fx2.it</strong>.</p>'
+      + '<h2>2. Licenza d’uso dell’app</h2><p>Ti concediamo una licenza personale, non esclusiva, non trasferibile e revocabile per installare e usare l’app su dispositivi che controlli, per il tuo uso lecito, nel rispetto di questi Termini e dei <strong>Termini di servizio di Google Play</strong>. Non puoi copiare, modificare, decompilare, rivendere o ridistribuire l’app, salvo nei limiti in cui tale restrizione non possa essere esclusa dalla legge.</p>'
+      + '<h2>3. Come funziona l’app</h2><p>Transcry converte il parlato in testo. A seconda della modalità che <strong>scegli tu</strong>, la trascrizione avviene interamente sul tuo dispositivo (offline), tramite il servizio di riconoscimento vocale del dispositivo, oppure tramite un provider cloud di terze parti usando una chiave API che <strong>fornisci tu</strong>. I dettagli sul trattamento dei dati sono nella nostra <a href="privacy.html">Informativa sulla privacy</a>.</p>'
+      + '<h2>4. Le tue chiavi API e i provider di terze parti (BYOK)</h2><ul>'
+      + '<li>Se inserisci la tua chiave API di un provider cloud (come Groq, OpenAI o AssemblyAI), stai usando il <strong>tuo account</strong> presso quel provider. Sei l’unico responsabile delle tue chiavi, della loro riservatezza e di qualsiasi utilizzo, tariffa o addebito che il provider ti applica.</li>'
+      + '<li>L’uso di qualsiasi provider di terze parti è regolato dai <strong>termini e dall’informativa sulla privacy di quel provider</strong>. FX2 non è parte di tale rapporto e <strong>non è responsabile</strong> dei servizi di terze parti, della loro disponibilità, accuratezza, prezzi o pratiche sui dati.</li>'
+      + '<li>L’audio o il testo che invii a un provider di terze parti va <strong>direttamente dal tuo dispositivo a quel provider</strong> e non passa dai server di FX2.</li></ul>'
+      + '<h2>5. Piani, acquisti e abbonamenti</h2><ul>'
+      + '<li><strong>La fatturazione è gestita da Google Play.</strong> Ogni acquisto — uno sblocco una tantum o un abbonamento — è elaborato da <strong>Google Play Billing</strong> tramite il tuo account Google. Non riceviamo né conserviamo i dati della tua carta di pagamento.</li>'
+      + '<li>Gli <strong>abbonamenti</strong> (per esempio un piano Pro mensile o annuale) si rinnovano automaticamente al prezzo in vigore fino alla disdetta. Un eventuale periodo di prova gratuito, se offerto, si converte in abbonamento a pagamento salvo disdetta prima della sua scadenza.</li>'
+      + '<li><strong>Gestisci o disdici</strong> un abbonamento in qualsiasi momento in Google Play → Abbonamenti. La disdetta interrompe i rinnovi futuri; l’accesso continua fino al termine del periodo già pagato.</li>'
+      + '<li>I <strong>prezzi</strong> possono cambiare; daremo preavviso come richiesto da Google Play e dalla legge applicabile prima che una modifica ti riguardi.</li></ul>'
+      + '<h2>6. Rimborsi</h2><p>I rimborsi per gli acquisti effettuati tramite Google Play sono gestiti secondo le <strong>politiche di rimborso di Google Play</strong> e i tuoi diritti di legge. Per problemi di acquisto o rimborso, usa i canali di assistenza di Google Play. Laddove tu abbia un diritto di legge al rimborso secondo le leggi del tuo Paese, tali diritti non sono pregiudicati da questi Termini.</p>'
+      + '<h2>7. Uso accettabile</h2><p>Accetti di non usare l’app per violare la legge, ledere i diritti altrui o registrare/trascrivere audio senza il consenso eventualmente richiesto dalla legge a te applicabile. Sei responsabile dei contenuti che acquisisci, trascrivi, memorizzi o condividi usando l’app.</p>'
+      + '<h2>8. I tuoi contenuti</h2><p>Trascrizioni, traduzioni, audio e impostazioni che crei restano <strong>sul tuo dispositivo</strong> (vedi l’Informativa sulla privacy). Conservi tutti i diritti sui tuoi contenuti. Non ne rivendichiamo la proprietà e non vi accediamo.</p>'
+      + '<h2>9. Proprietà intellettuale</h2><p>L’app stessa, il suo nome, il design e il codice sono di proprietà di FX2 o dei suoi licenzianti e sono protetti dalla legge. I modelli vocali e di traduzione sul dispositivo sono forniti dai rispettivi licenzianti terzi secondo le loro licenze.</p>'
+      + '<h2>10. Esclusione di garanzie</h2><p>La trascrizione e la traduzione sono prodotte da modelli di apprendimento automatico e <strong>possono contenere errori</strong>. L’app è fornita <strong>&ldquo;così com’è&rdquo; e &ldquo;come disponibile&rdquo;</strong>, senza garanzie di alcun tipo nella massima misura consentita dalla legge. Non dovresti fare affidamento sull’output dove l’accuratezza è critica senza verificarlo autonomamente. Non garantiamo che l’app sia priva di interruzioni o errori, né che i servizi di terze parti a cui può collegarsi siano disponibili.</p>'
+      + '<h2>11. Limitazione di responsabilità</h2><p>Nella massima misura consentita dalla legge, FX2 non sarà responsabile per danni indiretti o consequenziali, perdita di dati o tariffe addebitate da un provider di terze parti che hai scelto di usare. <strong>Nulla in questi Termini limita o esclude la responsabilità che non può essere limitata o esclusa per legge</strong>, inclusa la responsabilità per morte o lesioni personali causate da negligenza, per frode, o i tuoi diritti inderogabili di consumatore.</p>'
+      + '<h2>12. Diritti dei consumatori (SEE / UK)</h2><p>Se sei un consumatore nello Spazio economico europeo o nel Regno Unito, hai diritti di legge (inclusi, ove applicabili, i diritti relativi ai contenuti digitali e il diritto di recesso) che questi Termini non pregiudicano. Questi Termini si applicano in aggiunta a tali diritti e non li sostituiscono.</p>'
+      + '<h2>13. Modifiche a questi Termini</h2><p>Possiamo aggiornare questi Termini man mano che l’app cambia. La data di &ldquo;Ultimo aggiornamento&rdquo; qui sopra riflette la versione attuale. Se una modifica riduce in modo sostanziale i tuoi diritti, adotteremo misure ragionevoli per avvisarti. Continuare a usare l’app dopo una modifica significa accettare i Termini aggiornati.</p>'
+      + '<h2>14. Risoluzione</h2><p>Puoi smettere di usare l’app e disinstallarla in qualsiasi momento. Possiamo sospendere o terminare la tua licenza se violi in modo sostanziale questi Termini o usi l’app illecitamente. Le clausole che per loro natura devono sopravvivere (per esempio esclusioni di garanzia e limitazioni di responsabilità) continuano ad applicarsi dopo la risoluzione.</p>'
+      + '<h2>15. Legge applicabile</h2><p>Questi Termini sono regolati dalle leggi di <strong>Inghilterra e Galles</strong>. Se sei un consumatore, benefici delle eventuali tutele inderogabili della legge del tuo Paese di residenza e puoi agire dinanzi ai tribunali di quel Paese dove la legge lo consente.</p>'
+      + '<h2>16. Contatti</h2><p>Domande su questi Termini: <strong>info@fx2.it</strong></p>',
+
+    es: ''
+      + '<div class="doc-head"><p class="eyebrow">Condiciones del servicio</p><h1>Transcry — Condiciones del servicio</h1><p class="sub">Última actualización: 5 de noviembre de 2026</p></div>'
+      + '<p class="lead">Estas Condiciones del servicio (&ldquo;Condiciones&rdquo;) rigen tu uso de <strong>Transcry</strong> (&ldquo;la app&rdquo;), una app de voz a texto publicada por <strong>FX2 Information Services Limited</strong> (&ldquo;FX2&rdquo;, &ldquo;nosotros&rdquo;). Al instalar o usar la app, aceptas estas Condiciones. Si no estás de acuerdo, no uses la app.</p>'
+      + '<h2>1. Quiénes somos</h2><p>La app la proporciona <strong>FX2 Information Services Limited</strong>, una sociedad registrada en Inglaterra y Gales. Contacto: <strong>info@fx2.it</strong>.</p>'
+      + '<h2>2. Licencia de uso de la app</h2><p>Te concedemos una licencia personal, no exclusiva, intransferible y revocable para instalar y usar la app en dispositivos que controles, para tu uso lícito, con sujeción a estas Condiciones y a las <strong>Condiciones del servicio de Google Play</strong>. No puedes copiar, modificar, aplicar ingeniería inversa, revender ni redistribuir la app, salvo en la medida en que esa restricción no pueda excluirse por ley.</p>'
+      + '<h2>3. Cómo funciona la app</h2><p>Transcry convierte voz en texto. Según el modo que <strong>tú</strong> elijas, la transcripción se ejecuta íntegramente en tu dispositivo (sin conexión), mediante el servicio de reconocimiento de voz de tu dispositivo, o mediante un proveedor en la nube externo usando una clave API que <strong>tú</strong> facilitas. El detalle sobre el tratamiento de datos está en nuestra <a href="privacy.html">Política de privacidad</a>.</p>'
+      + '<h2>4. Tus propias claves API y proveedores externos (BYOK)</h2><ul>'
+      + '<li>Si introduces tu propia clave API de un proveedor en la nube (como Groq, OpenAI o AssemblyAI), estás usando <strong>tu propia cuenta</strong> con ese proveedor. Eres el único responsable de tus claves, de su confidencialidad y de cualquier uso, tarifa o cargo que ese proveedor te facture.</li>'
+      + '<li>Tu uso de cualquier proveedor externo se rige por las <strong>condiciones y la política de privacidad de ese proveedor</strong>. FX2 no es parte de esa relación y <strong>no es responsable</strong> de los servicios externos, su disponibilidad, exactitud, precios o prácticas de datos.</li>'
+      + '<li>El audio o el texto que envías a un proveedor externo va <strong>directamente desde tu dispositivo a ese proveedor</strong> y no pasa por los servidores de FX2.</li></ul>'
+      + '<h2>5. Planes, compras y suscripciones</h2><ul>'
+      + '<li><strong>La facturación la gestiona Google Play.</strong> Cualquier compra — un desbloqueo único o una suscripción — la procesa <strong>Google Play Billing</strong> con tu cuenta de Google. No recibimos ni almacenamos los datos de tu tarjeta de pago.</li>'
+      + '<li>Las <strong>suscripciones</strong> (por ejemplo, un plan Pro mensual o anual) se renuevan automáticamente al precio vigente hasta su cancelación. Cualquier periodo de prueba gratuito, si se ofrece, se convierte en una suscripción de pago salvo que canceles antes de que termine.</li>'
+      + '<li><strong>Gestiona o cancela</strong> una suscripción en cualquier momento en Google Play → Suscripciones. Cancelar detiene las renovaciones futuras; el acceso continúa hasta el final del periodo ya pagado.</li>'
+      + '<li>Los <strong>precios</strong> pueden cambiar; avisaremos según lo exijan Google Play y la ley aplicable antes de que un cambio te afecte.</li></ul>'
+      + '<h2>6. Reembolsos</h2><p>Los reembolsos de compras realizadas a través de Google Play se gestionan conforme a las <strong>políticas de reembolso de Google Play</strong> y tus derechos legales. Para incidencias de compra o reembolso, usa los canales de soporte de Google Play. Cuando tengas derecho legal a un reembolso según las leyes de tu país, estas Condiciones no afectan a esos derechos.</p>'
+      + '<h2>7. Uso aceptable</h2><p>Aceptas no usar la app para infringir la ley, vulnerar los derechos de nadie, ni grabar o transcribir audio sin el consentimiento que exija la ley que te sea aplicable. Eres responsable del contenido que captures, transcribas, almacenes o compartas usando la app.</p>'
+      + '<h2>8. Tu contenido</h2><p>Las transcripciones, traducciones, audio y ajustes que creas permanecen <strong>en tu dispositivo</strong> (consulta la Política de privacidad). Conservas todos los derechos sobre tu contenido. No reclamamos su propiedad ni accedemos a él.</p>'
+      + '<h2>9. Propiedad intelectual</h2><p>La app en sí, su nombre, diseño y código son propiedad de FX2 o de sus licenciantes y están protegidos por la ley. Los modelos de voz y traducción en el dispositivo los proporcionan sus respectivos licenciantes externos conforme a sus propias licencias.</p>'
+      + '<h2>10. Exención de garantías</h2><p>La transcripción y la traducción las producen modelos de aprendizaje automático y <strong>pueden contener errores</strong>. La app se proporciona <strong>&ldquo;tal cual&rdquo; y &ldquo;según disponibilidad&rdquo;</strong>, sin garantías de ningún tipo en la máxima medida permitida por la ley. No deberías confiar en el resultado donde la exactitud sea crítica sin comprobarlo de forma independiente. No garantizamos que la app sea ininterrumpida o esté libre de errores, ni que los servicios externos a los que puede conectarse estén disponibles.</p>'
+      + '<h2>11. Limitación de responsabilidad</h2><p>En la máxima medida permitida por la ley, FX2 no será responsable de pérdidas indirectas o consecuentes, pérdida de datos ni tarifas que te cobre un proveedor externo que elegiste usar. <strong>Nada en estas Condiciones limita ni excluye la responsabilidad que no pueda limitarse ni excluirse por ley</strong>, incluida la responsabilidad por muerte o lesiones personales causadas por negligencia, por fraude, o tus derechos legales imperativos como consumidor.</p>'
+      + '<h2>12. Derechos del consumidor (EEE / Reino Unido)</h2><p>Si eres consumidor en el Espacio Económico Europeo o el Reino Unido, tienes derechos legales (incluidos, cuando proceda, los relativos a contenidos digitales y el derecho de desistimiento) que estas Condiciones no afectan. Estas Condiciones se aplican además de esos derechos y no los sustituyen.</p>'
+      + '<h2>13. Cambios en estas Condiciones</h2><p>Podemos actualizar estas Condiciones a medida que la app cambie. La fecha de &ldquo;Última actualización&rdquo; de arriba refleja la versión actual. Si un cambio reduce sustancialmente tus derechos, tomaremos medidas razonables para avisarte. Seguir usando la app tras un cambio significa que aceptas las Condiciones actualizadas.</p>'
+      + '<h2>14. Resolución</h2><p>Puedes dejar de usar la app y desinstalarla en cualquier momento. Podemos suspender o finalizar tu licencia si incumples sustancialmente estas Condiciones o usas la app de forma ilícita. Las cláusulas que por su naturaleza deban subsistir (por ejemplo, exenciones de garantía y limitaciones de responsabilidad) siguen aplicándose tras la resolución.</p>'
+      + '<h2>15. Ley aplicable</h2><p>Estas Condiciones se rigen por las leyes de <strong>Inglaterra y Gales</strong>. Si eres consumidor, te beneficias de las protecciones imperativas de la ley de tu país de residencia y puedes presentar demandas ante los tribunales de ese país cuando la ley lo permita.</p>'
+      + '<h2>16. Contacto</h2><p>Preguntas sobre estas Condiciones: <strong>info@fx2.it</strong></p>',
+
+    fr: ''
+      + '<div class="doc-head"><p class="eyebrow">Conditions d’utilisation</p><h1>Transcry — Conditions d’utilisation</h1><p class="sub">Dernière mise à jour : 5 novembre 2026</p></div>'
+      + '<p class="lead">Ces Conditions d’utilisation (&laquo;&nbsp;Conditions&nbsp;&raquo;) régissent votre utilisation de <strong>Transcry</strong> (&laquo;&nbsp;l’app&nbsp;&raquo;), une app de reconnaissance vocale publiée par <strong>FX2 Information Services Limited</strong> (&laquo;&nbsp;FX2&nbsp;&raquo;, &laquo;&nbsp;nous&nbsp;&raquo;). En installant ou en utilisant l’app, vous acceptez ces Conditions. Si vous n’êtes pas d’accord, n’utilisez pas l’app.</p>'
+      + '<h2>1. Qui nous sommes</h2><p>L’app est fournie par <strong>FX2 Information Services Limited</strong>, société immatriculée en Angleterre et au pays de Galles. Contact : <strong>info@fx2.it</strong>.</p>'
+      + '<h2>2. Licence d’utilisation de l’app</h2><p>Nous vous accordons une licence personnelle, non exclusive, non transférable et révocable pour installer et utiliser l’app sur des appareils que vous contrôlez, pour votre usage licite, sous réserve de ces Conditions et des <strong>Conditions d’utilisation de Google Play</strong>. Vous ne pouvez pas copier, modifier, faire de l’ingénierie inverse, revendre ni redistribuer l’app, sauf dans la mesure où cette restriction ne peut être exclue par la loi.</p>'
+      + '<h2>3. Comment l’app fonctionne</h2><p>Transcry convertit la parole en texte. Selon le mode que <strong>vous</strong> choisissez, la transcription s’exécute entièrement sur votre appareil (hors ligne), via le service de reconnaissance vocale de votre appareil, ou via un fournisseur cloud tiers à l’aide d’une clé API que <strong>vous</strong> fournissez. Le détail du traitement des données figure dans notre <a href="privacy.html">Politique de confidentialité</a>.</p>'
+      + '<h2>4. Vos propres clés API et les fournisseurs tiers (BYOK)</h2><ul>'
+      + '<li>Si vous saisissez votre propre clé API d’un fournisseur cloud (tel que Groq, OpenAI ou AssemblyAI), vous utilisez <strong>votre propre compte</strong> chez ce fournisseur. Vous êtes seul responsable de vos clés, de leur confidentialité et de toute utilisation, frais ou facturation que ce fournisseur vous applique.</li>'
+      + '<li>Votre utilisation de tout fournisseur tiers est régie par les <strong>conditions et la politique de confidentialité de ce fournisseur</strong>. FX2 n’est pas partie à cette relation et <strong>n’est pas responsable</strong> des services tiers, de leur disponibilité, exactitude, tarification ou pratiques en matière de données.</li>'
+      + '<li>L’audio ou le texte que vous envoyez à un fournisseur tiers va <strong>directement de votre appareil à ce fournisseur</strong> et ne passe pas par les serveurs de FX2.</li></ul>'
+      + '<h2>5. Formules, achats et abonnements</h2><ul>'
+      + '<li><strong>La facturation est gérée par Google Play.</strong> Tout achat — un déblocage unique ou un abonnement — est traité par <strong>Google Play Billing</strong> via votre compte Google. Nous ne recevons ni ne conservons les informations de votre carte de paiement.</li>'
+      + '<li>Les <strong>abonnements</strong> (par exemple une formule Pro mensuelle ou annuelle) se renouvellent automatiquement au prix en vigueur jusqu’à résiliation. Toute période d’essai gratuite éventuellement proposée se transforme en abonnement payant sauf résiliation avant son terme.</li>'
+      + '<li><strong>Gérez ou résiliez</strong> un abonnement à tout moment dans Google Play → Abonnements. La résiliation arrête les renouvellements futurs ; l’accès se poursuit jusqu’à la fin de la période déjà payée.</li>'
+      + '<li>Les <strong>prix</strong> peuvent changer ; nous vous informerons comme l’exigent Google Play et la loi applicable avant qu’un changement ne vous concerne.</li></ul>'
+      + '<h2>6. Remboursements</h2><p>Les remboursements des achats effectués via Google Play sont traités selon les <strong>politiques de remboursement de Google Play</strong> et vos droits légaux. Pour tout problème d’achat ou de remboursement, utilisez les canaux d’assistance de Google Play. Lorsque vous disposez d’un droit légal au remboursement selon les lois de votre pays, ces Conditions n’affectent pas ces droits.</p>'
+      + '<h2>7. Usage acceptable</h2><p>Vous acceptez de ne pas utiliser l’app pour enfreindre la loi, porter atteinte aux droits d’autrui, ou enregistrer/transcrire de l’audio sans le consentement requis par la loi qui vous est applicable. Vous êtes responsable du contenu que vous captez, transcrivez, stockez ou partagez avec l’app.</p>'
+      + '<h2>8. Votre contenu</h2><p>Les transcriptions, traductions, audio et réglages que vous créez restent <strong>sur votre appareil</strong> (voir la Politique de confidentialité). Vous conservez tous les droits sur votre contenu. Nous n’en revendiquons pas la propriété et n’y accédons pas.</p>'
+      + '<h2>9. Propriété intellectuelle</h2><p>L’app elle-même, son nom, son design et son code appartiennent à FX2 ou à ses concédants et sont protégés par la loi. Les modèles de parole et de traduction sur l’appareil sont fournis par leurs concédants tiers respectifs selon leurs propres licences.</p>'
+      + '<h2>10. Exclusion de garanties</h2><p>La transcription et la traduction sont produites par des modèles d’apprentissage automatique et <strong>peuvent contenir des erreurs</strong>. L’app est fournie <strong>&laquo;&nbsp;en l’état&nbsp;&raquo; et &laquo;&nbsp;selon disponibilité&nbsp;&raquo;</strong>, sans garantie d’aucune sorte dans toute la mesure permise par la loi. Vous ne devriez pas vous fier au résultat lorsque l’exactitude est critique sans le vérifier de façon indépendante. Nous ne garantissons pas que l’app sera ininterrompue ou sans erreur, ni que les services tiers auxquels elle peut se connecter seront disponibles.</p>'
+      + '<h2>11. Limitation de responsabilité</h2><p>Dans toute la mesure permise par la loi, FX2 ne sera pas responsable des pertes indirectes ou consécutives, de la perte de données, ni des frais qu’un fournisseur tiers que vous avez choisi d’utiliser vous facture. <strong>Rien dans ces Conditions ne limite ni n’exclut la responsabilité qui ne peut être limitée ou exclue par la loi</strong>, y compris la responsabilité en cas de décès ou de dommage corporel causé par une négligence, en cas de fraude, ou vos droits impératifs de consommateur.</p>'
+      + '<h2>12. Droits des consommateurs (EEE / Royaume-Uni)</h2><p>Si vous êtes un consommateur dans l’Espace économique européen ou au Royaume-Uni, vous disposez de droits légaux (y compris, le cas échéant, les droits relatifs aux contenus numériques et le droit de rétractation) que ces Conditions n’affectent pas. Ces Conditions s’appliquent en complément de ces droits et ne les remplacent pas.</p>'
+      + '<h2>13. Modifications de ces Conditions</h2><p>Nous pouvons mettre à jour ces Conditions à mesure que l’app évolue. La date de &laquo;&nbsp;Dernière mise à jour&nbsp;&raquo; ci-dessus reflète la version actuelle. Si une modification réduit sensiblement vos droits, nous prendrons des mesures raisonnables pour vous en informer. Continuer à utiliser l’app après une modification vaut acceptation des Conditions mises à jour.</p>'
+      + '<h2>14. Résiliation</h2><p>Vous pouvez cesser d’utiliser l’app et la désinstaller à tout moment. Nous pouvons suspendre ou mettre fin à votre licence si vous enfreignez de manière substantielle ces Conditions ou utilisez l’app de façon illicite. Les clauses qui par leur nature doivent survivre (par exemple les exclusions de garantie et les limitations de responsabilité) continuent de s’appliquer après la résiliation.</p>'
+      + '<h2>15. Droit applicable</h2><p>Ces Conditions sont régies par le droit <strong>d’Angleterre et du pays de Galles</strong>. Si vous êtes un consommateur, vous bénéficiez des protections impératives du droit de votre pays de résidence et vous pouvez agir devant les tribunaux de ce pays lorsque la loi le permet.</p>'
+      + '<h2>16. Contact</h2><p>Questions sur ces Conditions : <strong>info@fx2.it</strong></p>',
+
+    de: ''
+      + '<div class="doc-head"><p class="eyebrow">Nutzungsbedingungen</p><h1>Transcry — Nutzungsbedingungen</h1><p class="sub">Zuletzt aktualisiert: 5. November 2026</p></div>'
+      + '<p class="lead">Diese Nutzungsbedingungen (&bdquo;Bedingungen&ldquo;) regeln deine Nutzung von <strong>Transcry</strong> (&bdquo;die App&ldquo;), einer Sprache-zu-Text-App, herausgegeben von <strong>FX2 Information Services Limited</strong> (&bdquo;FX2&ldquo;, &bdquo;wir&ldquo;). Mit der Installation oder Nutzung der App stimmst du diesen Bedingungen zu. Wenn du nicht zustimmst, nutze die App nicht.</p>'
+      + '<h2>1. Wer wir sind</h2><p>Die App wird von <strong>FX2 Information Services Limited</strong> bereitgestellt, einem in England und Wales eingetragenen Unternehmen. Kontakt: <strong>info@fx2.it</strong>.</p>'
+      + '<h2>2. Lizenz zur Nutzung der App</h2><p>Wir gewähren dir eine persönliche, nicht ausschließliche, nicht übertragbare und widerrufliche Lizenz, die App auf von dir kontrollierten Geräten zu installieren und für deine rechtmäßige Nutzung zu verwenden, vorbehaltlich dieser Bedingungen und der <strong>Google-Play-Nutzungsbedingungen</strong>. Du darfst die App nicht kopieren, verändern, zurückentwickeln, weiterverkaufen oder weiterverbreiten, außer soweit diese Einschränkung gesetzlich nicht ausgeschlossen werden kann.</p>'
+      + '<h2>3. Wie die App funktioniert</h2><p>Transcry wandelt Sprache in Text um. Je nach dem von <strong>dir</strong> gewählten Modus läuft die Transkription vollständig auf deinem Gerät (offline), über den Spracherkennungsdienst deines Geräts oder über einen Drittanbieter in der Cloud mithilfe eines API-Schlüssels, den <strong>du</strong> bereitstellst. Einzelheiten zur Datenverarbeitung findest du in unserer <a href="privacy.html">Datenschutzerklärung</a>.</p>'
+      + '<h2>4. Deine eigenen API-Schlüssel und Drittanbieter (BYOK)</h2><ul>'
+      + '<li>Wenn du deinen eigenen API-Schlüssel eines Cloud-Anbieters (etwa Groq, OpenAI oder AssemblyAI) eingibst, nutzt du <strong>dein eigenes Konto</strong> bei diesem Anbieter. Du bist allein verantwortlich für deine Schlüssel, deren Vertraulichkeit und jede Nutzung, Gebühr oder Abrechnung, die dieser Anbieter dir in Rechnung stellt.</li>'
+      + '<li>Deine Nutzung eines Drittanbieters unterliegt den <strong>Bedingungen und der Datenschutzerklärung dieses Anbieters</strong>. FX2 ist nicht Partei dieser Beziehung und <strong>nicht verantwortlich</strong> für Drittanbieterdienste, deren Verfügbarkeit, Genauigkeit, Preise oder Datenpraktiken.</li>'
+      + '<li>Audio oder Text, den du an einen Drittanbieter sendest, geht <strong>direkt von deinem Gerät an diesen Anbieter</strong> und läuft nicht über die Server von FX2.</li></ul>'
+      + '<h2>5. Pläne, Käufe und Abonnements</h2><ul>'
+      + '<li><strong>Die Abrechnung erfolgt über Google Play.</strong> Jeder Kauf — eine einmalige Freischaltung oder ein Abonnement — wird von <strong>Google Play Billing</strong> über dein Google-Konto abgewickelt. Wir erhalten oder speichern deine Zahlungskartendaten nicht.</li>'
+      + '<li><strong>Abonnements</strong> (zum Beispiel ein monatlicher oder jährlicher Pro-Plan) verlängern sich automatisch zum jeweils gültigen Preis bis zur Kündigung. Ein etwaig angebotener kostenloser Testzeitraum geht in ein kostenpflichtiges Abonnement über, sofern du nicht vor dessen Ende kündigst.</li>'
+      + '<li><strong>Verwalte oder kündige</strong> ein Abonnement jederzeit in Google Play → Abos. Eine Kündigung stoppt künftige Verlängerungen; der Zugang bleibt bis zum Ende des bereits bezahlten Zeitraums bestehen.</li>'
+      + '<li><strong>Preise</strong> können sich ändern; wir informieren dich, wie von Google Play und dem anwendbaren Recht verlangt, bevor eine Änderung dich betrifft.</li></ul>'
+      + '<h2>6. Erstattungen</h2><p>Erstattungen für über Google Play getätigte Käufe werden nach den <strong>Erstattungsrichtlinien von Google Play</strong> und deinen gesetzlichen Rechten abgewickelt. Bei Kauf- oder Erstattungsfragen nutze die Support-Kanäle von Google Play. Soweit dir nach den Gesetzen deines Landes ein gesetzliches Erstattungsrecht zusteht, werden diese Rechte durch diese Bedingungen nicht berührt.</p>'
+      + '<h2>7. Zulässige Nutzung</h2><p>Du erklärst dich bereit, die App nicht zu nutzen, um gegen Gesetze zu verstoßen, Rechte anderer zu verletzen oder Audio ohne die nach dem für dich geltenden Recht erforderliche Einwilligung aufzunehmen oder zu transkribieren. Du bist für die Inhalte verantwortlich, die du mit der App erfasst, transkribierst, speicherst oder teilst.</p>'
+      + '<h2>8. Deine Inhalte</h2><p>Transkripte, Übersetzungen, Audio und Einstellungen, die du erstellst, bleiben <strong>auf deinem Gerät</strong> (siehe Datenschutzerklärung). Du behältst alle Rechte an deinen Inhalten. Wir beanspruchen kein Eigentum daran und greifen nicht darauf zu.</p>'
+      + '<h2>9. Geistiges Eigentum</h2><p>Die App selbst, ihr Name, Design und Code gehören FX2 oder seinen Lizenzgebern und sind gesetzlich geschützt. Die Sprach- und Übersetzungsmodelle auf dem Gerät werden von ihren jeweiligen Drittlizenzgebern nach deren eigenen Lizenzen bereitgestellt.</p>'
+      + '<h2>10. Haftungsausschluss</h2><p>Transkription und Übersetzung werden von Modellen des maschinellen Lernens erzeugt und <strong>können Fehler enthalten</strong>. Die App wird <strong>&bdquo;wie besehen&ldquo; und &bdquo;wie verfügbar&ldquo;</strong> bereitgestellt, ohne jegliche Gewährleistung, soweit gesetzlich zulässig. Du solltest dich auf die Ausgabe dort, wo Genauigkeit entscheidend ist, nicht ohne eigene Prüfung verlassen. Wir gewährleisten nicht, dass die App unterbrechungs- oder fehlerfrei ist oder dass die Drittdienste, mit denen sie sich verbinden kann, verfügbar sind.</p>'
+      + '<h2>11. Haftungsbeschränkung</h2><p>Soweit gesetzlich zulässig, haftet FX2 nicht für mittelbare oder Folgeschäden, Datenverlust oder Gebühren, die dir ein von dir gewählter Drittanbieter berechnet. <strong>Nichts in diesen Bedingungen beschränkt oder schließt eine Haftung aus, die gesetzlich nicht beschränkt oder ausgeschlossen werden kann</strong>, einschließlich der Haftung für Tod oder Körperverletzung durch Fahrlässigkeit, für Betrug oder deiner zwingenden Verbraucherrechte.</p>'
+      + '<h2>12. Verbraucherrechte (EWR / UK)</h2><p>Wenn du Verbraucher im Europäischen Wirtschaftsraum oder im Vereinigten Königreich bist, hast du gesetzliche Rechte (einschließlich, soweit zutreffend, Rechte in Bezug auf digitale Inhalte und das Widerrufsrecht), die durch diese Bedingungen nicht berührt werden. Diese Bedingungen gelten zusätzlich zu diesen Rechten und ersetzen sie nicht.</p>'
+      + '<h2>13. Änderungen dieser Bedingungen</h2><p>Wir können diese Bedingungen aktualisieren, wenn sich die App ändert. Das Datum &bdquo;Zuletzt aktualisiert&ldquo; oben spiegelt die aktuelle Version wider. Wenn eine Änderung deine Rechte wesentlich einschränkt, werden wir angemessene Schritte unternehmen, um dich zu informieren. Die weitere Nutzung der App nach einer Änderung bedeutet, dass du die aktualisierten Bedingungen akzeptierst.</p>'
+      + '<h2>14. Beendigung</h2><p>Du kannst die Nutzung der App jederzeit beenden und sie deinstallieren. Wir können deine Lizenz aussetzen oder beenden, wenn du wesentlich gegen diese Bedingungen verstößt oder die App rechtswidrig nutzt. Klauseln, die ihrer Natur nach fortbestehen sollten (zum Beispiel Haftungsausschlüsse und Haftungsbeschränkungen), gelten auch nach Beendigung weiter.</p>'
+      + '<h2>15. Anwendbares Recht</h2><p>Diese Bedingungen unterliegen dem Recht von <strong>England und Wales</strong>. Als Verbraucher genießt du die zwingenden Schutzvorschriften des Rechts deines Wohnsitzlandes und kannst dort vor Gericht gehen, wo das Gesetz dies zulässt.</p>'
+      + '<h2>16. Kontakt</h2><p>Fragen zu diesen Bedingungen: <strong>info@fx2.it</strong></p>'
+  };
+
+  (function () {
+    var root = document.documentElement;
+    var sel = document.getElementById('langSel');
+    var themeBtn = document.getElementById('themeBtn');
+    var doc = document.getElementById('doc');
+
+    function pickLang() {
+      var saved; try { saved = localStorage.getItem('transcry-site-lang'); } catch (e) {}
+      if (saved && DOC[saved]) return saved;
+      var n = (navigator.language || 'en').slice(0, 2).toLowerCase();
+      return DOC[n] ? n : 'en';
+    }
+    function apply(lang) {
+      if (!DOC[lang]) lang = 'en';
+      doc.innerHTML = DOC[lang] + '<p class="i18n-note">' + NOTE[lang] + '</p>';
+      var c = CHROME[lang];
+      document.getElementById('backTxt').textContent = c.back;
+      document.getElementById('fHome').textContent = c.home;
+      document.getElementById('fPrivacy').textContent = c.privacy;
+      document.getElementById('legalTxt').innerHTML = c.legal;
+      root.setAttribute('lang', lang);
+      sel.value = lang;
+    }
+    sel.addEventListener('change', function () {
+      apply(sel.value);
+      try { localStorage.setItem('transcry-site-lang', sel.value); } catch (e) {}
+    });
+    apply(pickLang());
+
+    try { var st = localStorage.getItem('transcry-site-theme'); if (st) root.setAttribute('data-theme', st); } catch (e) {}
+    function curTheme() {
+      var a = root.getAttribute('data-theme');
+      if (a) return a;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    themeBtn.addEventListener('click', function () {
+      var next = curTheme() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('transcry-site-theme', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
