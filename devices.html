@@ -93,6 +93,7 @@
   table.devtable code { font-family: var(--font-mono); font-size: 0.86em; color: var(--dim); }
   .yes { color: var(--accent); font-weight: 600; white-space: nowrap; }
   .no  { color: var(--warn); font-weight: 600; white-space: nowrap; }
+  .partial { color: var(--warn); font-weight: 600; white-space: nowrap; }
   .pill { display: inline-block; font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em;
     padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--dim); }
   .note { color: var(--dim); font-size: 0.86rem; border-left: 3px solid var(--line); padding-left: 14px; margin: 26px 0 0; }
@@ -136,7 +137,7 @@
     <p class="sub">Last updated: 11 November 2026</p>
   </div>
 
-  <p class="lead">Transcry has three ways to transcribe. <strong>Live</strong> (your device&rsquo;s own speech recognizer) and <strong>Online</strong> (using your own cloud API key) work on virtually any modern Android. <strong>On-device</strong> transcription — fully private and offline — is the most demanding: it runs a speech model directly on your phone, so it needs a reasonably capable processor and enough memory. On some entry-level devices it can&rsquo;t run — and when that happens the app tells you and offers one tap to Live.</p>
+  <p class="lead">Transcry has three ways to transcribe. <strong>Live</strong> (your device&rsquo;s own speech recognizer) and <strong>Online</strong> (using your own cloud API key) work on virtually any modern Android. <strong>On-device</strong> transcription — fully private and offline — is the most demanding: it runs a speech model directly on your device, so it needs a reasonably capable processor and enough memory. On some entry-level devices it can&rsquo;t run — and when that happens the app tells you and offers one tap to Live.</p>
 
   <h2>The three modes</h2>
   <ul>
@@ -159,8 +160,8 @@
         <tr>
           <td>AWOW CreaPad 1001</td>
           <td><code>Unisoc SC9863A · 3&nbsp;GB · Android&nbsp;11</code></td>
-          <td class="no">Not supported</td>
-          <td>The on-device engine (WebAssembly / ONNX Runtime) can&rsquo;t execute on this chip — even the smallest model fails with a runtime error. The largest model additionally runs out of memory. <strong>Live and Online work.</strong></td>
+          <td class="partial">Partial — Tiny only</td>
+          <td>The <strong>Tiny</strong> on-device model works. The larger <strong>Base</strong> and <strong>Small</strong> models are too heavy for this 3&nbsp;GB device — they fail (out of memory / runtime error), and the app then offers one-tap <strong>Live</strong>. <strong>Live and Online work fully.</strong></td>
         </tr>
       </tbody>
     </table>
@@ -168,7 +169,7 @@
 
   <h2>General guidance</h2>
   <ul>
-    <li>On-device works best on recent mid-range and flagship phones — roughly <strong>4&nbsp;GB RAM or more</strong>, a current 64-bit chip, and an up-to-date Android System WebView.</li>
+    <li>On-device works best on recent mid-range and flagship devices — roughly <strong>4&nbsp;GB RAM or more</strong>, a current 64-bit chip, and an up-to-date Android System WebView.</li>
     <li>On a lower-end device, pick a <strong>smaller model</strong> (Settings) first; if on-device still won&rsquo;t run, use <strong>Live</strong> or <strong>Online</strong>.</li>
     <li>Keep <strong>Android System WebView</strong> updated from the Play Store — the on-device engine relies on it.</li>
   </ul>
